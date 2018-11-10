@@ -11,12 +11,27 @@
 module.exports.policies = {
 
   /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
+	*                                                                          *
+	* Default policy for all controllers and actions, unless overridden.       *
+	* (`true` allows public access)                                            *
+	*                                                                          *
+	***************************************************************************/
 
-  // '*': true,
+	'*': ['authenticated','hasJWT'],
+	// whitelist the auth controller
+	'auth': {
+		'*': true
+  },
+  'user':{
+    '*':true,
+    'view':[
+      'hasJWT',
+      'authenticated',
+    ],
+    'checkIn':[
+      'hasJWT',
+      'authenticated',
+    ]
+  }
 
 };

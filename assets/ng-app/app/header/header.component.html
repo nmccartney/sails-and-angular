@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  <span>My Sails & Angular Application</span>
+  <span class="filler"></span>
+  <span>
+    <button *ngIf="!isAuthenticated" mat-button (click)="openLogin()">login | register</button>
+    <button *ngIf="isAuthenticated" mat-button (click)="logout()">logout</button>
+  </span>
+</mat-toolbar>

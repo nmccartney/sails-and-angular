@@ -1,0 +1,39 @@
+<div class="content" fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column">
+  <div fxFlex="50" class="sec3" fxFlex.xs="15">
+    <form [formGroup]="registerForm">
+
+      <mat-form-field class="block-field">
+        <input
+          formControlName="username"
+          name="username"
+          matInput
+          placeholder="Username"
+          type="email">
+        <mat-hint>Enter Email</mat-hint>
+        <mat-error>Please provide a valid email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="block-field">
+        <input
+          formControlName="password"
+          name="password"
+          matInput
+          type="password"
+          placeholder="Password">
+        <mat-hint>Enter password</mat-hint>
+        <mat-error>Please provide a valid password</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="block-field">
+        <input matInput type="password" placeholder="Confrim Password">
+        <mat-hint>Confirm your password</mat-hint>
+        <mat-error>Please provide a valid password</mat-error>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button (click)="onSubmit()">Register</button>
+      </div>
+
+    </form>
+  </div>
+</div>
