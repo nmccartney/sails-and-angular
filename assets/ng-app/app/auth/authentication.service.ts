@@ -26,9 +26,9 @@ export class AuthenticationService {
 
   isAuthenticated() {
     const token = localStorage.getItem('token');
-    console.log('token : ',token);
+    // console.log('token : ',token);
     if(!token)return false;
-    console.log('decoded : ',jwt_decode(token));
+    // console.log('decoded : ',jwt_decode(token));
     // Check whether the token is expired and return
     // true or false
     return true;

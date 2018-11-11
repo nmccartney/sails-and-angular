@@ -1,0 +1,67 @@
+<h3 mat-dialog-title>
+    Edit Group - {{data.name}}
+
+    <!-- <button mat-button mat-dialog-close>X</button> -->
+  </h3>
+  <form [formGroup]="groupForm" novalidate>
+
+    <div mat-dialog-content>
+
+      <mat-form-field class="example-full-width">
+        <input formControlName="name" autocomplete="off" required matInput cdkFocusInitial placeholder="Group Name">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput [disabled]="true" placeholder="Owner Name">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field style="width:100%;">
+          <mat-chip-list #chipList>
+            <mat-chip
+              *ngFor="let user of users"
+              [selectable]="true"
+              [removable]="true"
+              (removed)="remove(user)">
+              {{user.username}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="New User..."
+              #userInput
+              [formControl]="userCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="false"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+              {{user.username}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
+
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!groupForm.valid"
+        (click)="onSubmit()">
+        Apply
+      </button>
+    </div>
+
+  </form>
+form
+<div><pre><code>{{groupForm.value | json}}</code></pre></div>
+<!-- data -->
+<!-- <div><pre><code>{{data | json}}</code></pre></div> -->
+<!-- group -->
+<!-- <div><pre><code>{{group | json}}</code></pre></div> -->

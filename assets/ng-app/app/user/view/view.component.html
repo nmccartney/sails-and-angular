@@ -2,27 +2,43 @@
 
   <mat-tab label="Profile">
 
-    <h3>Welcome - {{user?.username}}</h3>
+    <article>
+      <section>
+        <h3>Welcome - {{user?.username}}</h3>
 
-    <pre> <code>{{user | json}}</code> </pre>
+        <pre> <code>{{user | json}}</code> </pre>
 
-    <br />
+        <br />
 
-    <pre> <code>{{store || {} | json}}</code></pre>
+        <pre> <code>{{store || {} | json}}</code></pre>
+      </section>
+    </article>
 
   </mat-tab>
 
   <mat-tab label="Users">
 
-    <h3>Users:</h3>
+    <article>
+      <h3>Users:</h3>
 
-    <ul>
-      <li *ngFor="let user of users">
-        <pre>
-          <code>{{user.username | json}}</code>
-        </pre>
-      </li>
-    </ul>
+      <ul>
+        <li *ngFor="let user of users">
+          <pre>
+              <code>{{user.username | json}}</code>
+            </pre>
+        </li>
+      </ul>
+    </article>
+
+  </mat-tab>
+
+  <mat-tab label="Groups">
+
+    <article>
+      <section>
+        <group-manager></group-manager>
+      </section>
+    </article>
 
   </mat-tab>
 

@@ -15,6 +15,7 @@ export class ViewComponent implements OnInit {
   user: any;
   users;
   returnUrl;
+  groupDefs = ['id','username','uid','createdAt','actions'];
 
   constructor(private route: ActivatedRoute,
     private us: UserService,
@@ -37,7 +38,7 @@ export class ViewComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log('get user success : ', data);
+          // console.log('get user success : ', data);
           this.user = data.user;
           //TODO: goto login screen
         },
@@ -50,7 +51,7 @@ export class ViewComponent implements OnInit {
     this.us.find()
       .subscribe(
         data => {
-          console.log('get users success : ', data);
+          // console.log('get users success : ', data);
           this.users = data;
           //TODO: goto login screen
         },

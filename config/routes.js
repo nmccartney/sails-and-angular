@@ -61,6 +61,12 @@ module.exports.routes = {
   '/view': 'UserController.view',
   '/testing': 'UserController.testing',
 
+  'get /group': 'GroupController.index',
+  'post /group': 'GroupController.create',
+  'delete /group': 'GroupController.destroy',
+  'get /group/:uid': 'GroupController.view',
+  'post /group/:uid': 'GroupController.update',
+
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝

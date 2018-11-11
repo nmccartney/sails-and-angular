@@ -1,0 +1,32 @@
+<h3 mat-dialog-title>
+  Create Groups
+
+  <!-- <button mat-button mat-dialog-close>X</button> -->
+</h3>
+<form [formGroup]="groupForm" novalidate>
+
+  <div mat-dialog-content>
+
+    <mat-form-field class="example-full-width">
+      <input formControlName="name" autocomplete="off" required matInput cdkFocusInitial placeholder="Group Name">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <input matInput [disabled]="true" value="{{owner.uid}}" placeholder="Owner Name">
+    </mat-form-field>
+
+  </div>
+
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!groupForm.valid"
+      (click)="submit()">
+      Create
+    </button>
+  </div>
+
+</form>

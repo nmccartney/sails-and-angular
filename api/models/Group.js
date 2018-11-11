@@ -1,7 +1,5 @@
-const bcrypt = require('bcrypt-nodejs');
-
 /**
- * User.js
+ * Group.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -14,20 +12,11 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
     uid: {
       type: 'string',
-      // unique: true,
-      // required: true
     },
 
-    username: {
-      type: 'string',
-      isEmail: true,
-      unique: true,
-      required: true
-    },
-    password: {
+    name: {
       type: 'string',
       required: true
     },
@@ -41,32 +30,25 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+    owner: {
+      model: 'user',
+    },
+
+    users: {
+      collection: 'user',
+      via: 'groups'
+    },
+
     // events: {
     //   collection: 'event',
-    //   via: 'invited'
+    //   via: 'group'
     // }
-    groups:{
-      collection: 'group',
-      via: 'users'
-    }
   },
 
-  customToJSON: function () {
-    // return this;
-    return _.omit(this, ['password']);
-  },
-
-  beforeCreate: function (user, cb) {
-    sails.log('before user created lets add guid', user);
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(user.password, salt, null, function (err, hash) {
-        if (err) return cb(err);
-        user.uid = guid();
-        user.password = hash;
-        sails.log('User created - ', JSON.stringify(user));
-        return cb();
-      });
-    });
+  beforeCreate: function (group, cb) {
+    group.uid = guid();
+    sails.log('before group created lets add guid', group);
+    return cb();
   }
 
 };
