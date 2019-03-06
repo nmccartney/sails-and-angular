@@ -35,9 +35,57 @@ module.exports = {
 
   },
 
-  testing: function(req,res){
-    req.logout();
-    res.ok({message:'ok'});
+  detail: (req, res) => {
+
+    data = {
+      uid: req.params.uid,
+    }
+
+    User.findOne(data)
+      .populate('groups')
+      .populate('events')
+      .exec((err, user) => {
+        if (err) {
+          sails.log.info('[UserDetail Error] : ', JSON.stringify(err));
+          return res.badRequest(err);
+        }
+
+        return res.ok(user);
+      });
+  },
+
+  groups: (req, res) => {
+    data = {
+      uid: req.params.uid,
+    }
+
+    User.findOne(data)
+      .populate('groups')
+      .exec((err, user) => {
+        if (err) {
+          sails.log.info('[UserGroups Error] : ', JSON.stringify(err));
+          return res.badRequest(err);
+        }
+
+        return res.ok(user.groups);
+      });
+  },
+
+  events: function (req, res) {
+    data = {
+      uid: req.params.uid,
+    }
+
+    User.findOne(data)
+      .populate('events')
+      .exec((err, user) => {
+        if (err) {
+          sails.log.info('[UserEventss Error] : ', JSON.stringify(err));
+          return res.badRequest(err);
+        }
+
+        return res.ok(user.events);
+      });
   }
 
 };

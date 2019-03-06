@@ -58,14 +58,22 @@ module.exports.routes = {
   'get /check-in': 'AuthController.checkIn',
   '/logout': 'AuthController.logout',
 
-  '/view': 'UserController.view',
-  '/testing': 'UserController.testing',
+  'get /view': 'UserController.view',
+  'get /user/:uid': 'UserController.detail',
+  'get /user/:uid/groups': 'UserController.groups',
+  'get /user/:uid/events': 'UserController.events',
 
-  'get /group': 'GroupController.index',
+  'get /group': 'GroupController.index',// protect as master
   'post /group': 'GroupController.create',
   'delete /group': 'GroupController.destroy',
   'get /group/:uid': 'GroupController.view',
   'post /group/:uid': 'GroupController.update',
+
+  'get /event': 'EventController.index',// protect as master
+  'post /event': 'EventController.create',
+  'delete /event': 'EventController.destroy',
+  'get /event/:uid': 'EventController.view',
+  'post /event/:uid': 'EventController.update',
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

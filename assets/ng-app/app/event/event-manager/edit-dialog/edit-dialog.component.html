@@ -1,0 +1,35 @@
+<h3 mat-dialog-title>
+  Edit Group (WIP)
+</h3>
+<form [formGroup]="groupForm" novalidate>
+
+  <div mat-dialog-content>
+
+    <mat-form-field class="example-full-width">
+      <input formControlName="name" name="name" required matInput cdkFocusInitial placeholder="Event Name">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <input formControlName="owner" name="owner"  matInput cdkFocusInitial placeholder="Owner Name">
+    </mat-form-field>
+
+  </div>
+
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!groupForm.valid"
+      (click)="onSubmit()">
+      Apply
+    </button>
+  </div>
+
+</form>
+form
+<div><pre><code>{{groupForm.value | json}}</code></pre></div>
+event
+<div><pre><code>{{event | json}}</code></pre></div>

@@ -3,15 +3,24 @@
   <mat-tab label="Profile">
 
     <article>
-      <section>
-        <h3>Welcome - {{user?.username}}</h3>
+      <mat-toolbar color="primary" class="mat-elevation-z1">
+        <span>Details</span>
+      </mat-toolbar>
 
-        <pre> <code>{{user | json}}</code> </pre>
+      <mat-card>
 
-        <br />
+        <mat-card-header>
+          <mat-card-title>{{user?.username}}</mat-card-title>
+          <mat-card-subtitle>{{user?.uid}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <pre> <code>{{store || {} | json}}</code></pre>
+        </mat-card-content>
+        <mat-card-actions align="start">
+          <button mat-raised-button (click)="onAction1">Edit</button>
 
-        <pre> <code>{{store || {} | json}}</code></pre>
-      </section>
+        </mat-card-actions>
+      </mat-card>
     </article>
 
   </mat-tab>
@@ -41,5 +50,15 @@
     </article>
 
   </mat-tab>
+
+  <mat-tab label="Events">
+
+      <article>
+        <section>
+          <event-manager></event-manager>
+        </section>
+      </article>
+
+    </mat-tab>
 
 </mat-tab-group>

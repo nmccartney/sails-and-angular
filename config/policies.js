@@ -35,6 +35,9 @@ module.exports.policies = {
   },
   'group': {
     '*': true
+  },
+  'event': {
+    '*': true
   }
 
 };

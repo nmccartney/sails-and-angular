@@ -13,10 +13,14 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    // name: {
-    //   type: 'string',
-    //   required: true
-    // },
+    uid: {
+      type: 'string',
+    },
+
+    name: {
+      type: 'string',
+      required: true
+    },
 
 
 
@@ -28,6 +32,20 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+
+    addresses:{
+      collection: 'address',
+      via: 'event'
+    },
+
+    owner:{
+      model: 'user'
+    },
+
+    groups:{
+      collection: 'group',
+      via:'events'
+    }
     // invited: {
     //   collection: 'user',
     //   via: 'events'
@@ -46,4 +64,19 @@ module.exports = {
     // }
   },
 
+  beforeCreate: function (group, cb) {
+    group.uid = guid();
+    sails.log('before event created lets add guid', group);
+    return cb();
+  }
+
 };
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}

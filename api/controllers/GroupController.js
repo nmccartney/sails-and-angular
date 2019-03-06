@@ -45,7 +45,7 @@ module.exports = {
       name: req.body.name,
       owner: req.body.owner,
       users: convertUserObjectToId(req.body.users) || []
-    }
+    };
 
     Group.update({
         uid: req.body.uid

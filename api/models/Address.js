@@ -1,5 +1,5 @@
 /**
- * Group.js
+ * Address.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,6 +12,7 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+
     uid: {
       type: 'string',
     },
@@ -19,6 +20,33 @@ module.exports = {
     name: {
       type: 'string',
       required: true
+    },
+
+    state: {
+      type: 'string',
+      required: true
+    },
+
+    city: {
+      type: 'string',
+      required: true
+    },
+
+    street: {
+      type: 'string'
+    },
+
+    street_2: {
+      type: 'string',
+    },
+
+    zip: {
+      type: 'string',
+      required: true
+    },
+
+    phone: {
+      type: 'string',
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -30,39 +58,14 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+    event: {
+      model: 'event'
+    },
+
     owner: {
-      model: 'user',
-    },
-
-    users: {
-      collection: 'user',
-      via: 'groups'
-    },
-
-    events:{
-      collection: 'event',
-      via: 'groups'
+      model: 'user'
     }
 
-    // events: {
-    //   collection: 'event',
-    //   via: 'group'
-    // }
   },
 
-  beforeCreate: function (group, cb) {
-    group.uid = guid();
-    sails.log('before group created lets add guid', group);
-    return cb();
-  }
-
 };
-
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}

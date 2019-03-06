@@ -41,10 +41,11 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    // events: {
-    //   collection: 'event',
-    //   via: 'invited'
-    // }
+    events: {
+      collection: 'event',
+      via: 'owner'
+    },
+
     groups:{
       collection: 'group',
       via: 'users'
