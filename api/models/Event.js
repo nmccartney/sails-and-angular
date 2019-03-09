@@ -22,7 +22,28 @@ module.exports = {
       required: true
     },
 
+    description: {
+      type: 'string'
+    },
 
+    start_time:{
+      type: 'string'
+    },
+    end_time:{
+      type: 'string'
+    },
+
+    place_id: {
+      type: 'string'
+    },
+
+    location: {
+      type: 'string'
+    },
+
+    gps: {
+      type: 'json'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -33,18 +54,18 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    addresses:{
+    addresses: {
       collection: 'address',
       via: 'event'
     },
 
-    owner:{
+    owner: {
       model: 'user'
     },
 
-    groups:{
+    groups: {
       collection: 'group',
-      via:'events'
+      via: 'events'
     }
     // invited: {
     //   collection: 'user',

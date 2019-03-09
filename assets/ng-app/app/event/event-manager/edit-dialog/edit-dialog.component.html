@@ -1,35 +1,111 @@
 <h3 mat-dialog-title>
-  Edit Group (WIP)
+  Edit Event
 </h3>
+<!-- https://github.com/tiaguinho/material-community-components/blob/master/src/demo-app/app/scrollspy/components/scrollspy-examples.component.html -->
 <form [formGroup]="groupForm" novalidate>
 
   <div mat-dialog-content>
 
-    <mat-form-field class="example-full-width">
-      <input formControlName="name" name="name" required matInput cdkFocusInitial placeholder="Event Name">
-    </mat-form-field>
-    <br>
 
-    <mat-form-field class="example-full-width">
-      <input formControlName="owner" name="owner"  matInput cdkFocusInitial placeholder="Owner Name">
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign=" start" fxFlex>
+      <div class="one" fxFlex="25" style="padding-right:15px;">
+        <mat-form-field class="ff-full-width">
+          <input formControlName="name" name="name" required matInput cdkFocusInitial placeholder="Event Name">
+        </mat-form-field>
 
+        <!-- <mat-form-field class="ff-full-width">
+          <input
+            matInput
+            formControlName="start_time"
+            [matDatepicker]="dp"
+            placeholder="Start time">
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field> -->
+
+        <mat-form-field class="ff-full-width">
+          <mat-placeholder>Start Time</mat-placeholder>
+          <mat-datetimepicker-toggle [for]="startDatetimePicker" matSuffix></mat-datetimepicker-toggle>
+          <mat-datetimepicker mode="auto" #startDatetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
+          <input
+            matInput
+            formControlName="start_time"
+            [matDatetimepicker]="startDatetimePicker"
+            required autocomplete="false">
+          <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
+        </mat-form-field>
+
+        <!-- <mat-form-field class="ff-full-width">
+          <input
+            matInput
+            formControlName="end_time"
+            [matDatepicker]="endTimeDp"
+            placeholder="End Date">
+          <mat-datepicker-toggle matSuffix [for]="endTimeDp"></mat-datepicker-toggle>
+          <mat-datepicker #endTimeDp></mat-datepicker>
+        </mat-form-field> -->
+
+        <mat-form-field class="ff-full-width">
+          <mat-placeholder>End Time</mat-placeholder>
+          <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
+          <mat-datetimepicker mode="auto" #datetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
+          <input
+            matInput
+            formControlName="end_time"
+            [matDatetimepicker]="datetimePicker"
+            required autocomplete="false">
+          <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
+          <!-- https://mattlewis92.github.io/angularx-flatpickr/ -->
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
+          <textarea
+            formControlName="description"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            name="description"
+            matInput
+            placeholder="Description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="owner" name="owner" matInput placeholder="Owner">
+        </mat-form-field>
+
+
+        <!-- <div>{{latitude}}/{{longitude}}</div>
+        <div>{{zoom}}</div>
+        <div>
+          <pre><code>{{groupForm.value | json}}</code></pre>
+        </div>
+        <div>{{latitude}}/{{longitude}}</div>
+        event
+        <div>
+          <pre><code>{{event | json}}</code></pre>
+        </div> -->
+
+      </div>
+      <div class="two" fxFlex="75">
+        <mat-form-field  class="ff-full-width">
+          <input matInput placeholder="location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+            #search formControlName="location">
+        </mat-form-field>
+        <!-- this creates a google map on the page with the given lat/lng from -->
+        <!-- the component as the initial center of the map: -->
+        <agm-map [latitude]="event.gps?.lat || latitude" [zoom]="zoom" [longitude]="event.gps?.lng || longitude">
+          <agm-marker [latitude]="event.gps?.lat || latitude" [longitude]="event.gps?.lng || latitude"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
   </div>
+
 
 
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!groupForm.valid"
-      (click)="onSubmit()">
+    <button mat-raised-button color="primary" [disabled]="!groupForm.valid" (click)="onSubmit()">
       Apply
     </button>
   </div>
 
 </form>
-form
-<div><pre><code>{{groupForm.value | json}}</code></pre></div>
-event
-<div><pre><code>{{event | json}}</code></pre></div>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventService } from '../event.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
@@ -11,7 +11,8 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 })
 export class EventManagerComponent implements OnInit {
 
-  eventDefs = ['id', 'name', 'createdAt', 'actions'];
+  @ViewChild(MatSort) sort: MatSort;
+  eventDefs = ['id', 'name', 'time','location','createdAt', 'actions'];
   events: any;
 
   constructor(
@@ -29,7 +30,8 @@ export class EventManagerComponent implements OnInit {
     this.es.find()
       .subscribe(
         data => {
-          this.events = data;
+          this.events = new MatTableDataSource(data);
+          this.events.sort = this.sort;
           this.bar.open('got events','success',{duration:3000});
         },
         error => {

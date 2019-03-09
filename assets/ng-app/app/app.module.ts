@@ -17,6 +17,7 @@ import { HomeModule } from './home/home.module';
 import { HomeViewComponent } from './home/home-view/home-view.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HeaderModule } from './header/header.module';
+import { AgmCoreModule } from '@agm/core';
 
 const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
 
@@ -26,10 +27,17 @@ const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
   ],
   imports: [
     AuthModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCQ1pGRsiGLQP2rJavFC-jKVh0uaHf1uws',
+      libraries: ["places"]
+    }),
     BrowserAnimationsModule,
     BrowserModule,
     MaterialModule,
-    FlexLayoutModule,
+    FlexLayoutModule.withConfig({
+      // useColumnBasisZero: false,
+      // printWithBreakpoints: ['md', 'lt-lg', 'lt-xl', 'gt-sm', 'gt-xs']
+    }),
     FormsModule,
     // HttpClientModule,
     ReactiveFormsModule,

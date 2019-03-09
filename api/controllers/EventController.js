@@ -43,6 +43,12 @@ module.exports = {
 
     newData = {
       name: req.body.name,
+      description: req.body.description,
+      start_time: req.body.start_time,
+      end_time: req.body.end_time,
+      location: req.body.location,
+      place_id: req.body.place_id,
+      gps: req.body.gps,
     }
 
     Event.update({
