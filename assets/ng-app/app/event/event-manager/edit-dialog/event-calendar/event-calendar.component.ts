@@ -86,13 +86,13 @@ export class EventCalendarComponent implements OnInit {
         this.onSelection.emit(event);
       }
     },
-    // {
-    //   label: '<i class="fa fa-fw fa-times"></i>',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.events = this.events.filter(iEvent => iEvent !== event);
-    //     this.handleEvent('Deleted', event);
-    //   }
-    // }
+    {
+      label: '<i class="fa fa-fw fa-times"></i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter(iEvent => iEvent !== event);
+        this.handleEvent('Deleted', event);
+      }
+    }
   ];
 
   refresh: Subject<any> = new Subject();
@@ -129,7 +129,7 @@ export class EventCalendarComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    // this.onSelection.emit(event);
+    this.onSelection.emit(event);
     // this.modalData = { event, action };
     // this.modal.open(this.modalContent, { size: 'lg' });
   }

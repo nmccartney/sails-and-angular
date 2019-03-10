@@ -11,12 +11,11 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { Component, OnInit, Inject, NgZone, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormControlName } from '@angular/forms';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
-// import { EventService } from '../../event.service';
+import { EventService } from '../../event.service';
 import { first } from 'rxjs/operators';
 import { MapsAPILoader } from '@agm/core';
 import { MAT_DATETIME_FORMATS, MatDatetimepicker } from '@mat-datetimepicker/core';
 import { MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
-import { EventService } from 'ng-app/app/event/event.service';
 
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
@@ -37,14 +36,30 @@ export const MY_FORMATS = {
   templateUrl: './edit-dialog.component.html',
   styleUrls: ['./edit-dialog.component.scss'],
   providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDatetimeAdapter,
-      deps: [MAT_DATE_LOCALE]
-    },
+    { provide: DateAdapter, useClass: MomentDatetimeAdapter, deps: [MAT_DATE_LOCALE] },
+    // { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
     {
       provide: MAT_DATETIME_FORMATS,
       useValue: MAT_MOMENT_DATETIME_FORMATS
+      // {
+      //   parse: {
+      //     dateInput: "L",
+      //     monthInput: "MMMM",
+      //     timeInput: "L LT",
+      //     datetimeInput: "L LT"
+      //   },
+      //   display: {
+      //     dateInput: "L",
+      //     monthInput: "MMMM",
+      //     datetimeInput: "L LT",
+      //     timeInput: "L LT",
+      //     monthYearLabel: "MMM YYYY",
+      //     dateA11yLabel: "LL",
+      //     monthYearA11yLabel: "MMMM YYYY",
+      //     popupHeaderDateLabel: "ddd, DD MMM",
+      //     popupHeaderTimeLabel: "h:mm A"
+      //   }
+      // }
     }
   ],
 })
@@ -161,8 +176,8 @@ export class EditDialogComponent implements OnInit {
       name: new FormControl(this.event.name),
       description: new FormControl(this.event.description || ''),
       start_time: new FormControl(this.event.start_time || moment()),
-      // end_time: new FormControl(this.event.end_time || moment()),
-      end_time: new FormControl(''),
+      end_time: new FormControl(this.event.end_time || moment()),
+      end_time_time: new FormControl(moment(this.event.end_time).hour() || moment()),
       owner: new FormControl({
         value: 'n/a',
         disabled: true

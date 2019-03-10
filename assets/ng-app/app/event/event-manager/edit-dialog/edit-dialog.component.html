@@ -23,7 +23,7 @@
           <mat-datepicker #dp></mat-datepicker>
         </mat-form-field> -->
 
-        <!-- <mat-form-field class="ff-full-width">
+        <mat-form-field class="ff-full-width">
           <mat-placeholder>Start Time</mat-placeholder>
           <mat-datetimepicker-toggle [for]="startDatetimePicker" matSuffix></mat-datetimepicker-toggle>
           <mat-datetimepicker mode="auto" #startDatetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
@@ -32,8 +32,8 @@
             formControlName="start_time"
             [matDatetimepicker]="startDatetimePicker"
             required autocomplete="false">
-        </mat-form-field> -->
-        <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
+          <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
+        </mat-form-field>
 
         <!-- <mat-form-field class="ff-full-width">
           <input
@@ -52,11 +52,11 @@
           <input
             matInput
             formControlName="end_time"
-            [matDatetimepicker]=""
+            [matDatetimepicker]="datetimePicker"
             required autocomplete="false">
+          <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
+          <!-- https://mattlewis92.github.io/angularx-flatpickr/ -->
         </mat-form-field>
-        <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
-        <!-- https://mattlewis92.github.io/angularx-flatpickr/ -->
 
         <mat-form-field class="ff-full-width">
           <textarea

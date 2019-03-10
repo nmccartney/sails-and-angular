@@ -1,24 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-// import { EventService } from '../event.service';
-import { MatDialog, MatSnackBar, MatSort, MatTableDataSource, MAT_DATE_LOCALE } from '@angular/material';
+import { EventService } from '../event.service';
+import { MatDialog, MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
-import { EventService } from 'ng-app/app/event/event.service';
-import { MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
-import { MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
-import { DateAdapter } from 'angular-calendar';
 
 @Component({
   selector: 'event-manager',
   templateUrl: './event-manager.component.html',
-  styleUrls: ['./event-manager.component.scss'],
-  // providers: [
-  //   { provide: DateAdapter, useClass: MomentDatetimeAdapter, deps: [MAT_DATE_LOCALE] },
-  //   {
-  //     provide: MAT_DATETIME_FORMATS,
-  //     useValue: MAT_MOMENT_DATETIME_FORMATS
-  //   }
-  // ],
+  styleUrls: ['./event-manager.component.scss']
 })
 export class EventManagerComponent implements OnInit {
 
@@ -30,6 +19,7 @@ export class EventManagerComponent implements OnInit {
     private es: EventService,
     public dialog: MatDialog,
     private bar:MatSnackBar) {
+
   }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-<!-- <event-calendar [events]="events?.data" (onSelection)="onEdit($event)"></event-calendar> -->
+<event-calendar [events]="events?.data" (onSelection)="onEdit($event)"></event-calendar>
 
 
 <mat-toolbar class="mat-elevation-z3">
@@ -9,18 +9,9 @@
   </span>
 </mat-toolbar>
 
-<!-- <div>
-  <mat-form-field class="ff-full-width">
-    <mat-placeholder>End Time</mat-placeholder>
-    <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
-    <mat-datetimepicker mode="auto" #datetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
-    <input matInput [matDatetimepicker]="" required autocomplete="false">
-  </mat-form-field>
-</div> -->
-
 <div class="mat-elevation-z3">
 
-  <table mat-table [dataSource]="events" matSort *ngIf="events?.length!==0">
+  <table mat-table [dataSource]="events"  matSort  *ngIf="events?.length!==0">
 
     <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
@@ -77,3 +68,5 @@
   </article>
 
 </div>
+
+

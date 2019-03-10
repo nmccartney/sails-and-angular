@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
-// import { EventService } from '../../event.service';
+import { EventService } from '../../event.service';
 import { UserService } from 'ng-app/app/user/user.service';
-import { EventService } from 'ng-app/app/event/event.service';
 
 @Component({
   selector: 'app-create-dialog',
