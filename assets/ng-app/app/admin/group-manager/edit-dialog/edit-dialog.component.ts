@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent, MatAutocompleteSelectedEvent, MatSnackBar } from '@angular/material';
-import { GroupService } from '../../group.service';
+// import { GroupService } from '../../group.service';
 import { UserService } from 'ng-app/app/user/user.service';
 import { first, startWith, map } from 'rxjs/operators';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { GroupService } from 'ng-app/app/group/group.service';
 
 @Component({
   selector: 'app-edit-dialog',

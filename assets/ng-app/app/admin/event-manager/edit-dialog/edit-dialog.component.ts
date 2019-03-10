@@ -161,8 +161,7 @@ export class EditDialogComponent implements OnInit {
       name: new FormControl(this.event.name),
       description: new FormControl(this.event.description || ''),
       start_time: new FormControl(this.event.start_time || moment()),
-      // end_time: new FormControl(this.event.end_time || moment()),
-      end_time: new FormControl(''),
+      end_time: new FormControl(this.event.end_time || moment()),
       owner: new FormControl({
         value: 'n/a',
         disabled: true

@@ -1,47 +1,37 @@
-<p>
-  admin-view works!
-</p>
-
 <mat-tab-group>
 
-    <mat-tab label="General">
-      <p>general</p>
-    </mat-tab>
+  <mat-tab label="General">
+    <p>general</p>
+  </mat-tab>
 
-    <mat-tab label="Users">
+  <mat-tab label="Users">
 
-      <article>
-        <h3>Users:</h3>
+    <article>
+      <section>
+        <user-manager></user-manager>
+      </section>
+    </article>
 
-        <ul>
-          <li *ngFor="let user of users">
-            <pre>
-                <code>{{user.username | json}}</code>
-              </pre>
-          </li>
-        </ul>
-      </article>
+  </mat-tab>
 
-    </mat-tab>
+  <mat-tab label="Groups">
 
-    <mat-tab label="Groups">
+    <article>
+      <section>
+        <group-manager></group-manager>
+      </section>
+    </article>
 
-      <article>
-        <section>
-          <!-- <group-manager></group-manager> -->
-        </section>
-      </article>
+  </mat-tab>
 
-    </mat-tab>
+  <mat-tab label="Events">
 
-    <mat-tab label="Events">
+    <article>
+      <section>
+        <event-manager></event-manager>
+      </section>
+    </article>
 
-        <article>
-          <section>
-            <event-manager></event-manager>
-          </section>
-        </article>
+  </mat-tab>
 
-      </mat-tab>
-
-  </mat-tab-group>
+</mat-tab-group>

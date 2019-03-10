@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventManagerComponent } from './event-manager.component';
+import { GroupViewComponent } from './group-view.component';
 
-describe('EventManagerComponent', () => {
-  let component: EventManagerComponent;
-  let fixture: ComponentFixture<EventManagerComponent>;
+describe('GroupViewComponent', () => {
+  let component: GroupViewComponent;
+  let fixture: ComponentFixture<GroupViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventManagerComponent ]
+      declarations: [ GroupViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventManagerComponent);
+    fixture = TestBed.createComponent(GroupViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

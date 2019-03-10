@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupService } from '../group.service';
+// import { GroupService } from '../group.service';
 import { MatDialog } from '@angular/material';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { GroupService } from 'ng-app/app/group/group.service';
 
 @Component({
   selector: 'group-manager',
-  templateUrl: './manager.component.html',
-  styleUrls: ['./manager.component.scss']
+  templateUrl: './group-manager.component.html',
+  styleUrls: ['./group-manager.component.scss']
 })
 export class GroupManagerComponent implements OnInit {
 

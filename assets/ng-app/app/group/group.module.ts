@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatButtonModule, MatToolbarModule, MatDialogModule } from '@angular/material';
-import { ManagerModule } from './manager/manager.module';
-import { GroupManagerComponent } from './manager/manager.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GroupViewComponent } from './group-view/group-view.component';
 
 @NgModule({
   imports: [
@@ -13,8 +12,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatToolbarModule,
     MatDialogModule,
-    ManagerModule
   ],
-  exports:[GroupManagerComponent]
+  exports:[
+    GroupViewComponent
+  ],
+  declarations: [GroupViewComponent],
 })
 export class GroupModule { }

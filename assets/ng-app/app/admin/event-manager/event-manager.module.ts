@@ -47,7 +47,6 @@ import { MatMomentDatetimeModule, MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAda
     MatChipsModule,
     MatIconModule,
     MatSortModule,
-    // MatMomentDatetimeModule,
     MatDatetimepickerModule,
     MatDatepickerModule,
     MatAutocompleteModule,
@@ -68,16 +67,5 @@ import { MatMomentDatetimeModule, MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAda
   entryComponents: [
     EditDialogComponent
   ],
-  // providers: [
-  //   {
-  //     provide: DateAdapter,
-  //     useClass: MomentDatetimeAdapter,
-  //     deps: [MAT_DATE_LOCALE]
-  //   },
-  //   {
-  //     provide: MAT_DATETIME_FORMATS,
-  //     useValue: MAT_MOMENT_DATETIME_FORMATS
-  //   }
-  // ],
 })
 export class EventManagerModule { }

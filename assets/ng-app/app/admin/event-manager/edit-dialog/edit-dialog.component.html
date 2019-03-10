@@ -13,59 +13,27 @@
           <input formControlName="name" name="name" required matInput cdkFocusInitial placeholder="Event Name">
         </mat-form-field>
 
-        <!-- <mat-form-field class="ff-full-width">
-          <input
-            matInput
-            formControlName="start_time"
-            [matDatepicker]="dp"
-            placeholder="Start time">
-          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-          <mat-datepicker #dp></mat-datepicker>
-        </mat-form-field> -->
-
-        <!-- <mat-form-field class="ff-full-width">
+        <mat-form-field class="ff-full-width">
           <mat-placeholder>Start Time</mat-placeholder>
           <mat-datetimepicker-toggle [for]="startDatetimePicker" matSuffix></mat-datetimepicker-toggle>
           <mat-datetimepicker mode="auto" #startDatetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
-          <input
-            matInput
-            formControlName="start_time"
-            [matDatetimepicker]="startDatetimePicker"
-            required autocomplete="false">
-        </mat-form-field> -->
+          <input matInput formControlName="start_time" [matDatetimepicker]="startDatetimePicker" required autocomplete="false">
+        </mat-form-field>
         <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
 
-        <!-- <mat-form-field class="ff-full-width">
-          <input
-            matInput
-            formControlName="end_time"
-            [matDatepicker]="endTimeDp"
-            placeholder="End Date">
-          <mat-datepicker-toggle matSuffix [for]="endTimeDp"></mat-datepicker-toggle>
-          <mat-datepicker #endTimeDp></mat-datepicker>
-        </mat-form-field> -->
 
         <mat-form-field class="ff-full-width">
           <mat-placeholder>End Time</mat-placeholder>
           <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
           <mat-datetimepicker mode="auto" #datetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
-          <input
-            matInput
-            formControlName="end_time"
-            [matDatetimepicker]=""
-            required autocomplete="false">
+          <input matInput formControlName="end_time" [matDatetimepicker]="datetimePicker" required autocomplete="false">
         </mat-form-field>
         <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
         <!-- https://mattlewis92.github.io/angularx-flatpickr/ -->
 
         <mat-form-field class="ff-full-width">
-          <textarea
-            formControlName="description"
-            cdkTextareaAutosize
-            #autosize="cdkTextareaAutosize"
-            name="description"
-            matInput
-            placeholder="Description"></textarea>
+          <textarea formControlName="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize" name="description"
+            matInput placeholder="Description"></textarea>
         </mat-form-field>
 
         <mat-form-field class="ff-full-width">
@@ -86,7 +54,7 @@
 
       </div>
       <div class="two" fxFlex="75">
-        <mat-form-field  class="ff-full-width">
+        <mat-form-field class="ff-full-width">
           <input matInput placeholder="location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
             #search formControlName="location">
         </mat-form-field>

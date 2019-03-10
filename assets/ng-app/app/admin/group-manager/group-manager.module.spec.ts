@@ -1,10 +1,10 @@
-import { ManagerModule } from './manager.module';
+import { GroupManagerModule } from './group-manager.module';
 
 describe('ManagerModule', () => {
-  let managerModule: ManagerModule;
+  let managerModule: GroupManagerModule;
 
   beforeEach(() => {
-    managerModule = new ManagerModule();
+    managerModule = new GroupManagerModule();
   });
 
   it('should create an instance', () => {

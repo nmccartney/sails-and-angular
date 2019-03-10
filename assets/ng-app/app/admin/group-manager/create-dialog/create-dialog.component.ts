@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { GroupService } from '../../group.service';
+// import { GroupService } from '../../group.service';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from 'ng-app/app/user/user.service';
+import { GroupService } from 'ng-app/app/group/group.service';
 
 @Component({
   selector: 'app-create-dialog',

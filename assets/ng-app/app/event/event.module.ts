@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventManagerComponent } from './event-manager/event-manager.component';
 import { EventViewComponent } from './event-view/event-view.component';
 import { MatButtonModule, MatTableModule, MatCardModule, MatDialogModule, MatToolbarModule, MatSnackBarModule, MatFormField, MatFormFieldModule, MatAutocompleteModule, MatChipList, MatChipsModule, MatIconModule, MatInputModule, MatDatepickerModule, MatSortModule } from '@angular/material';
-import { CreateDialogComponent } from './event-manager/create-dialog/create-dialog.component';
-import { EditDialogComponent } from './event-manager/edit-dialog/edit-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { EventCalendarComponent } from './event-manager/edit-dialog/event-calendar/event-calendar.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { MatDatetimepickerModule, MAT_DATETIME_FORMATS, } from '@mat-datetimepicker/core';
 import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
+import { EventCalendarComponent } from './event-calendar/event-calendar.component';
 
 @NgModule({
   imports: [
@@ -44,19 +41,13 @@ import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
     })
   ],
   exports: [
-    EventManagerComponent,
     EventViewComponent
   ],
   declarations: [
-    EventManagerComponent,
     EventViewComponent,
-    CreateDialogComponent,
-    EditDialogComponent,
     EventCalendarComponent,
   ],
   entryComponents: [
-    CreateDialogComponent,
-    EditDialogComponent,
     EventCalendarComponent,
   ],
 

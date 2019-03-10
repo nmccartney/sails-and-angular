@@ -9,23 +9,23 @@ import {
   MatCardModule,
   MatTabsModule,
   MatButtonModule,
-  MAT_DATE_LOCALE
 } from '@angular/material';
 import { EventManagerModule } from './event-manager/event-manager.module';
 import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatMomentDatetimeModule, MomentDatetimeAdapter, MAT_MOMENT_DATETIME_FORMATS } from '@mat-datetimepicker/moment';
-import { MatDatetimepickerModule, MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
+import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { DateAdapter, CalendarModule } from 'angular-calendar';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { EventManagerComponent } from './event-manager/event-manager.component';
+import { GroupManagerModule } from './group-manager/group-manager.module';
+import { UserManagerModule } from './user-manager/user-manager.module';
 
 @NgModule({
   imports: [
     AgmCoreModule,
     CommonModule,
     EventManagerModule,
+    GroupManagerModule,
     MatButtonModule,
     MatTabsModule,
     MatCardModule,
@@ -41,6 +41,7 @@ import { EventManagerComponent } from './event-manager/event-manager.component';
       useFactory: adapterFactory
     }),
     RouterModule.forRoot(adminRoutes),
+    UserManagerModule,
   ],
   exports:[
   ],
