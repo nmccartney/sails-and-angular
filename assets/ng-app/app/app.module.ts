@@ -18,6 +18,7 @@ import { HomeViewComponent } from './home/home-view/home-view.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HeaderModule } from './header/header.module';
 import { AgmCoreModule } from '@agm/core';
+import { AdminModule } from './admin/admin.module';
 
 const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
 
@@ -26,6 +27,7 @@ const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
     AppComponent
   ],
   imports: [
+    AdminModule,
     AuthModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCQ1pGRsiGLQP2rJavFC-jKVh0uaHf1uws',

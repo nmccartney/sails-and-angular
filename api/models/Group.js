@@ -41,7 +41,7 @@ module.exports = {
 
     events:{
       collection: 'event',
-      via: 'groups'
+      via: 'group'
     }
 
     // events: {

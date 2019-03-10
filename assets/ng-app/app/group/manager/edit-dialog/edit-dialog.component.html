@@ -1,67 +1,77 @@
 <h3 mat-dialog-title>
-    Edit Group - {{data.name}}
+  Edit Group - {{data.name}}
 
-    <!-- <button mat-button mat-dialog-close>X</button> -->
-  </h3>
-  <form [formGroup]="groupForm" novalidate>
+  <!-- <button mat-button mat-dialog-close>X</button> -->
+</h3>
 
-    <div mat-dialog-content>
+<div mat-dialog-content>
 
-      <mat-form-field class="example-full-width">
-        <input formControlName="name" autocomplete="off" required matInput cdkFocusInitial placeholder="Group Name">
+  <mat-tab-group>
+    <!-- GENERAL TAB -->
+    <mat-tab label="General">
+      <div style="margin-top:20px;">
+        <div fxLayout="row" fxLayoutAlign=" start" fxFlex>
+          <div class="one" fxFlex="25" style="padding-right:15px;">
+            <form [formGroup]="groupForm" novalidate>
+
+              <mat-form-field class="ff-full-width">
+                <input formControlName="name" autocomplete="off" required matInput cdkFocusInitial placeholder="Group Name">
+              </mat-form-field>
+
+              <mat-form-field class="ff-full-width">
+                <input matInput [disabled]="true" placeholder="Owner Name">
+              </mat-form-field>
+
+              <button mat-button mat-dialog-close>Cancel</button>
+              <button mat-raised-button color="primary" [disabled]="!groupForm.valid" (click)="onSubmit()">
+                Apply
+              </button>
+
+            </form>
+          </div>
+          <!-- column two -->
+          <div class="two" fxFlex="75">
+
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <!-- GROUPIES TAB -->
+    <mat-tab label="Groupies">
+      <mat-form-field class="ff-full-width">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let user of users" [selectable]="true" [removable]="true" (removed)="remove(user)">
+            {{user.username}}
+            <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="New User..." #userInput [formControl]="userCtrl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="false"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+            {{user.username}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
-      <br>
-      <mat-form-field class="example-full-width">
-        <input matInput [disabled]="true" placeholder="Owner Name">
-      </mat-form-field>
+    </mat-tab>
+    <mat-tab label="Events">
+        <!-- <event-calendar [events]="events?.data"></event-calendar> -->
 
-      <br>
-
-      <mat-form-field style="width:100%;">
-          <mat-chip-list #chipList>
-            <mat-chip
-              *ngFor="let user of users"
-              [selectable]="true"
-              [removable]="true"
-              (removed)="remove(user)">
-              {{user.username}}
-              <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
-            </mat-chip>
-            <input
-              placeholder="New User..."
-              #userInput
-              [formControl]="userCtrl"
-              [matAutocomplete]="auto"
-              [matChipInputFor]="chipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="false"
-              (matChipInputTokenEnd)="add($event)">
-          </mat-chip-list>
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
-              {{user.username}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-
-    </div>
+    </mat-tab>
+    <mat-tab label="Chat"> Content 2 </mat-tab>
+    <mat-tab label="Data">
+      form
+      <div>
+        <pre><code>{{groupForm.value | json}}</code></pre>
+      </div>
+      <!-- data -->
+      <!-- <div><pre><code>{{data | json}}</code></pre></div> -->
+      <!-- group -->
+      <!-- <div><pre><code>{{group | json}}</code></pre></div> -->
+    </mat-tab>
+  </mat-tab-group>
 
 
-    <div mat-dialog-actions>
-      <button mat-button mat-dialog-close>Cancel</button>
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="!groupForm.valid"
-        (click)="onSubmit()">
-        Apply
-      </button>
-    </div>
 
-  </form>
-form
-<div><pre><code>{{groupForm.value | json}}</code></pre></div>
-<!-- data -->
-<!-- <div><pre><code>{{data | json}}</code></pre></div> -->
-<!-- group -->
-<!-- <div><pre><code>{{group | json}}</code></pre></div> -->
+</div>

@@ -52,12 +52,10 @@ import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
     EventViewComponent,
     CreateDialogComponent,
     EditDialogComponent,
-    EventCalendarComponent,
   ],
   entryComponents: [
     CreateDialogComponent,
     EditDialogComponent,
-    EventCalendarComponent,
   ],
 
 })

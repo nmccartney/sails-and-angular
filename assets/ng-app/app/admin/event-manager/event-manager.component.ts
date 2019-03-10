@@ -12,13 +12,13 @@ import { DateAdapter } from 'angular-calendar';
   selector: 'event-manager',
   templateUrl: './event-manager.component.html',
   styleUrls: ['./event-manager.component.scss'],
-  // providers: [
-  //   { provide: DateAdapter, useClass: MomentDatetimeAdapter, deps: [MAT_DATE_LOCALE] },
-  //   {
-  //     provide: MAT_DATETIME_FORMATS,
-  //     useValue: MAT_MOMENT_DATETIME_FORMATS
-  //   }
-  // ],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDatetimeAdapter, deps: [MAT_DATE_LOCALE] },
+    {
+      provide: MAT_DATETIME_FORMATS,
+      useValue: MAT_MOMENT_DATETIME_FORMATS
+    }
+  ],
 })
 export class EventManagerComponent implements OnInit {
 

@@ -36,17 +36,17 @@ export const MY_FORMATS = {
   selector: 'app-edit-dialog',
   templateUrl: './edit-dialog.component.html',
   styleUrls: ['./edit-dialog.component.scss'],
-  providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDatetimeAdapter,
-      deps: [MAT_DATE_LOCALE]
-    },
-    {
-      provide: MAT_DATETIME_FORMATS,
-      useValue: MAT_MOMENT_DATETIME_FORMATS
-    }
-  ],
+  // providers: [
+  //   {
+  //     provide: DateAdapter,
+  //     useClass: MomentDatetimeAdapter,
+  //     deps: [MAT_DATE_LOCALE]
+  //   },
+  //   {
+  //     provide: MAT_DATETIME_FORMATS,
+  //     useValue: MAT_MOMENT_DATETIME_FORMATS
+  //   }
+  // ],
 })
 export class EditDialogComponent implements OnInit {
 

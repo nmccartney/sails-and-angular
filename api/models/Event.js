@@ -63,9 +63,8 @@ module.exports = {
       model: 'user'
     },
 
-    groups: {
-      collection: 'group',
-      via: 'events'
+    group: {
+      model:'group'
     }
     // invited: {
     //   collection: 'user',
