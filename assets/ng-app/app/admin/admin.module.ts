@@ -33,7 +33,7 @@ import { EventManagerComponent } from './event-manager/event-manager.component';
     MatTableModule,
     ReactiveFormsModule,
     FormsModule,
-    MatMomentDatetimeModule,
+    // MatMomentDatetimeModule,
     MatDatetimepickerModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

@@ -19,6 +19,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HeaderModule } from './header/header.module';
 import { AgmCoreModule } from '@agm/core';
 import { AdminModule } from './admin/admin.module';
+import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 
 const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
 
@@ -36,6 +37,7 @@ const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
     BrowserAnimationsModule,
     BrowserModule,
     MaterialModule,
+    MatMomentDatetimeModule,
     FlexLayoutModule.withConfig({
       // useColumnBasisZero: false,
       // printWithBreakpoints: ['md', 'lt-lg', 'lt-xl', 'gt-sm', 'gt-xs']

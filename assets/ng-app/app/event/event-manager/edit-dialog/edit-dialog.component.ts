@@ -35,33 +35,13 @@ export const MY_FORMATS = {
   selector: 'app-edit-dialog',
   templateUrl: './edit-dialog.component.html',
   styleUrls: ['./edit-dialog.component.scss'],
-  providers: [
-    { provide: DateAdapter, useClass: MomentDatetimeAdapter, deps: [MAT_DATE_LOCALE] },
-    // { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-    {
-      provide: MAT_DATETIME_FORMATS,
-      useValue: MAT_MOMENT_DATETIME_FORMATS
-      // {
-      //   parse: {
-      //     dateInput: "L",
-      //     monthInput: "MMMM",
-      //     timeInput: "L LT",
-      //     datetimeInput: "L LT"
-      //   },
-      //   display: {
-      //     dateInput: "L",
-      //     monthInput: "MMMM",
-      //     datetimeInput: "L LT",
-      //     timeInput: "L LT",
-      //     monthYearLabel: "MMM YYYY",
-      //     dateA11yLabel: "LL",
-      //     monthYearA11yLabel: "MMMM YYYY",
-      //     popupHeaderDateLabel: "ddd, DD MMM",
-      //     popupHeaderTimeLabel: "h:mm A"
-      //   }
-      // }
-    }
-  ],
+  // providers: [
+  //   { provide: DateAdapter, useClass: MomentDatetimeAdapter, deps: [MAT_DATE_LOCALE] },
+  //   {
+  //     provide: MAT_DATETIME_FORMATS,
+  //     useValue: MAT_MOMENT_DATETIME_FORMATS
+  //   }
+  // ],
 })
 export class EditDialogComponent implements OnInit {
 
