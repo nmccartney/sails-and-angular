@@ -11,6 +11,9 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
+import { MatDialog } from '@angular/material';
+import { CreateDialogComponent } from '../../create-dialog/create-dialog.component';
+import { group } from '@angular/animations';
 
 const colors: any = {
   red: {
@@ -36,6 +39,7 @@ export class EventCalendarComponent implements OnInit {
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   @HostBinding('class.event-calendar') _eventClass = true;
+  @Input() group;
   @Input()
   get events() { return this._events; }
   set events(value: any) {
@@ -98,9 +102,26 @@ export class EventCalendarComponent implements OnInit {
   refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = true;
 
-  // constructor(private modal: NgbModal) { }
+  constructor(private dialog:MatDialog) { }
 
   ngOnInit() {
+  }
+
+  createEvent(): void {
+    const createDialogRef = this.dialog.open(CreateDialogComponent, {
+      height: '75%',
+      width: '75%',
+      data: {
+        // group:this.even
+        group:this.group
+      }
+    });
+
+    createDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+      // this.setEvents();
+    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

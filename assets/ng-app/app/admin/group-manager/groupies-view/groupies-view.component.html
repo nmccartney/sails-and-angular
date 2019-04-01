@@ -1,0 +1,27 @@
+<div>
+
+  <div fxLayout="row" fxLayoutAlign="start" fxFlex>
+    <div class="one" fxFlex="25" style="padding-right:15px;">
+      <mat-list dense>
+        <mat-list-item *ngFor="let user of groupies">
+          <!-- <img matListAvatar src="..." alt="..."> -->
+          <mat-icon matListIcon>person</mat-icon>
+          <h3 matLine> {{user.username}}
+              <!-- <button  mat-fab color="warn" (click)="create()">X</button> -->
+
+          </h3>
+          <p matLine>
+            <span> {{user.createdAt | date}} </span>
+            <!-- <span class="demo-2"> -- {{message.content}} </span> -->
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="two" fxFlex="75">
+      <agm-map [latitude]="latitude" [zoom]="zoom" [longitude]="longitude">
+        <agm-marker [latitude]="latitude" [longitude]="latitude"></agm-marker>
+      </agm-map>
+    </div>
+  </div>
+
+</div>

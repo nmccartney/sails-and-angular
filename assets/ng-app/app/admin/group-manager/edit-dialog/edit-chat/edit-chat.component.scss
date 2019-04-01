@@ -1,0 +1,26 @@
+.create-message-container{
+  padding: 10px;
+  margin: 0 10px;
+  position: absolute;
+  bottom: 100px;
+  left: 0px;
+  right: 0px;
+  border-radius: 26px;
+
+  .ff-full-width{
+    width: 95%;
+  }
+}
+
+.create-message-action {
+  position: absolute;
+  bottom: 124px;
+  right: 20px;
+}
+
+.messages-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 170px;
+}

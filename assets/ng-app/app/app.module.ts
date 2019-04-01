@@ -47,7 +47,7 @@ const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: ()=>{
+        tokenGetter: () => {
           return localStorage.getItem('token');
         },
         // whitelistedDomains: ['localhost:3000'],

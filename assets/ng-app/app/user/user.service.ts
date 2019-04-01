@@ -9,6 +9,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  edit(user){
+    return this.http
+      .post(`http://localhost:1337/edit`, { params: { uid: user.uid } })
+      .pipe(map((resp: any) => {
+        return resp;
+      }));
+  }
+
   findMe(){
     const user = localStorage.getItem('currentUser');
     if(!user)return false;

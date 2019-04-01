@@ -20,12 +20,23 @@ module.exports = {
 
   create: (req, res) => {
 
-    data = {
-      name: req.body.name,
-      owner:req.body.owner.id
+    if (!req.body && !req.body.owner && !req.body.name) {
+      return res.badRequest(err);
     }
 
-    Event.create(data).fetch().exec((err, event) => {
+    newData = {
+      name: req.body.name,
+      owner: req.body.owner,
+      description: req.body.description || '',
+      start_time: req.body.start_time,
+      end_time: req.body.end_time,
+      location: req.body.location || '',
+      place_id: req.body.place_id || '',
+      gps: req.body.gps || null,
+      group: req.body.group || null,
+    }
+
+    Event.create(newData).fetch().exec((err, event) => {
       if (err) {
         sails.log.info('[EventCreate Error] : ', JSON.stringify(err));
         return res.badRequest(err);
@@ -49,6 +60,7 @@ module.exports = {
       location: req.body.location,
       place_id: req.body.place_id,
       gps: req.body.gps,
+      group: req.body.group,
     }
 
     Event.update({
@@ -94,6 +106,7 @@ module.exports = {
       .findOne(data)
       .populate('addresses')
       .populate('owner')
+      .populate('group')
       .exec((err, event) => {
         if (err) {
           sails.log.info('[EventView Error] : ', JSON.stringify(err));

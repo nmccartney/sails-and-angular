@@ -10,13 +10,14 @@ const moment = _rollupMoment || _moment;
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { Component, OnInit, Inject, NgZone, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormControlName } from '@angular/forms';
-import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatAutocompleteSelectedEvent } from '@angular/material';
 // import { EventService } from '../../event.service';
 import { first } from 'rxjs/operators';
 import { MapsAPILoader } from '@agm/core';
 import { MAT_DATETIME_FORMATS, MatDatetimepicker } from '@mat-datetimepicker/core';
 import { MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 import { EventService } from 'ng-app/app/event/event.service';
+import { GroupService } from 'ng-app/app/group/group.service';
 
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
@@ -52,6 +53,7 @@ export class EditDialogComponent implements OnInit {
 
   groupForm: FormGroup;
   event: any = { name: 'my event' };
+  groups;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -61,11 +63,12 @@ export class EditDialogComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number = 15;
   @ViewChild(MatDatetimepicker) datetimePicker: MatDatetimepicker<any>;
-
+  private group;
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
     private bar: MatSnackBar,
     private es: EventService,
+    private gs: GroupService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private _cd: ChangeDetectorRef,
@@ -77,19 +80,22 @@ export class EditDialogComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.datetimePicker);
-
     this.es.findOne(this.data)
       .pipe(first())
       .subscribe(data => {
         this.event = data;
-
         this.groupForm = this.createFormGroup();
-
         const ownerName = this.event.owner && this.event.owner.username || 'N/A'
         this.groupForm.controls.owner.setValue(ownerName);
+      }, error => {
+        this.bar
+          .open(error.message, 'error', { duration: 3000 });
+      });
 
-
+    this.gs.find()
+      .subscribe(data => {
+        this.groups = data;
+        console.log('groups ', data);
       }, error => {
         this.bar
           .open(error.message, 'error', { duration: 3000 });
@@ -139,12 +145,24 @@ export class EditDialogComponent implements OnInit {
     });
   }
 
+  onGroupSelected(event: MatAutocompleteSelectedEvent): void {
+    this.group = event.option.value;
+    this.groupForm.controls.group.setValue(event.option.value.name);
+  }
+
   onSubmit() {
-    let data = {
-      ...this.event,
-      ...this.groupForm.value,
+    let data;
+    try {
+      data = {
+        ...this.event,
+        ...this.groupForm.value,
+        group: this.group && this.group.id || this.event.group.id
+      }
+    }catch(error){
+      this.bar.open(error, 'Error', { duration: 3000 });
     }
-    console.log(data);
+
+    console.log('submitting : ',data);
     this.es.edit(data).subscribe(
       data => {
         this.dialogRef.close(data);
@@ -159,6 +177,7 @@ export class EditDialogComponent implements OnInit {
     console.log('creating form model : ', this.event);
     return new FormGroup({
       name: new FormControl(this.event.name),
+      group: new FormControl(this.event.group && this.event.group.name || ''),
       description: new FormControl(this.event.description || ''),
       start_time: new FormControl(this.event.start_time || moment()),
       end_time: new FormControl(this.event.end_time || moment()),

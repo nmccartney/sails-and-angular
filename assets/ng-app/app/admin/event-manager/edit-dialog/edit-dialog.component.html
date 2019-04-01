@@ -14,6 +14,19 @@
         </mat-form-field>
 
         <mat-form-field class="ff-full-width">
+          <input formControlName="owner" name="owner" matInput placeholder="Owner">
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
+          <input matInput placeholder="Add Group" name="group" formControlName="group"  [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onGroupSelected($event)">
+            <mat-option *ngFor="let group of groups" [value]="group">
+              {{group.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
           <mat-placeholder>Start Time</mat-placeholder>
           <mat-datetimepicker-toggle [for]="startDatetimePicker" matSuffix></mat-datetimepicker-toggle>
           <mat-datetimepicker mode="auto" #startDatetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
@@ -34,10 +47,6 @@
         <mat-form-field class="ff-full-width">
           <textarea formControlName="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize" name="description"
             matInput placeholder="Description"></textarea>
-        </mat-form-field>
-
-        <mat-form-field class="ff-full-width">
-          <input formControlName="owner" name="owner" matInput placeholder="Owner">
         </mat-form-field>
 
 

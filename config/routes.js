@@ -60,6 +60,7 @@ module.exports.routes = {
 
   'get /view': 'UserController.view',
   'get /user/:uid': 'UserController.detail',
+  'post /user/:uid': 'UserController.update',
   'get /user/:uid/groups': 'UserController.groups',
   'get /user/:uid/events': 'UserController.events',
 
@@ -68,6 +69,14 @@ module.exports.routes = {
   'delete /group': 'GroupController.destroy',
   'get /group/:uid': 'GroupController.view',
   'post /group/:uid': 'GroupController.update',
+
+  'get /group/:id/messages': 'MessageController.index',
+  'post /group/:uid/message': 'MessageController.create',
+  'post /message': 'MessageController.create',
+  'delete /group/:uid/message/:uid': 'MessageController.destroy',
+  'delete /message/:uid': 'MessageController.destroy',
+  'get /message/:uid': 'MessageController.detail',// protect as master
+
 
   'get /event': 'EventController.index',// protect as master
   'post /event': 'EventController.create',

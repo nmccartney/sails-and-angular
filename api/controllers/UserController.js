@@ -54,6 +54,34 @@ module.exports = {
       });
   },
 
+  edit: (req, res) => {
+    var data = req.body;
+    if (!data || !data.username || !data.uid) {
+      return res.badRequest(err);
+    }
+
+    newUser = {
+      username: data.username
+    };
+
+    if(data.password && data.password === data.confirmPassword){
+      sails.log.info('[UserUpdate Info] : ', JSON.stringify(data));
+      // newUser['password'] = data.password;
+    }
+
+    User.update({
+        uid: req.body.uid
+      }, newUser)
+      .fetch()
+      .exec((err, user) => {
+        if (err) {
+          sails.log.info('[UserUpdate Error] : ', JSON.stringify(err));
+          return res.badRequest(err);
+        }
+        return res.ok(user);
+      });
+  },
+
   groups: (req, res) => {
     data = {
       uid: req.params.uid,

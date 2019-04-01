@@ -1,0 +1,75 @@
+<div class="container-fluid" style="margin-top:10px;">
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Update User</h4>
+    </div>
+  </div>
+  <div class="row">
+    <form [formGroup]="userForm">
+      <div class="col-xs-6">
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="username" name="username" required matInput placeholder="User Name">
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="firstName" name="firstName" autocomplete="off" matInput placeholder="First Name">
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="LastName" name="lastName" autocomplete="off" matInput placeholder="Last Name">
+        </mat-form-field>
+
+
+      </div>
+      <div class="col-xs-6">
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="uid" name="uid" matInput placeholder="UID">
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
+          <input name="phone" autocomplete="off" matInput placeholder="Phone Number" disabled>
+        </mat-form-field>
+
+      </div>
+      <div class="col-xs-12 text-right" style="padding-top:15px;">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!userForm.valid" (click)="onSubmit()">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Update Password</h4>
+    </div>
+    <form [formGroup]="passwordForm">
+      <div class="col-xs-6">
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="password" name="password" type="password" matInput placeholder="Password">
+        </mat-form-field>
+
+      </div>
+      <div class="col-xs-6">
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="confirmPassword" name="confirmPassword" type="password" matInput placeholder="Confirm Password">
+          <mat-error>Passwords must match</mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="col-xs-12 text-right" style="padding-top:15px;">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!passwordForm.valid" (click)="onSubmit()">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

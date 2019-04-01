@@ -1,84 +1,44 @@
-<!-- <ng-template #modalContent let-close="close">
-  <div class="modal-header">
-    <h5 class="modal-title">Event action occurred</h5>
-    <button type="button" class="close" (click)="close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div>
-      Action:
-      <pre>{{ modalData?.action }}</pre>
-    </div>
-    <div>
-      Event:
-      <pre>{{ modalData?.event | json }}</pre>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="close()">
-      OK
-    </button>
-  </div>
-</ng-template> -->
 
 <div class="event-calendar-header row text-center">
   <div class="col-md-4">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
+
+    <mat-button-toggle-group color="accent" name="calandarView" aria-label="Font Style">
+      <mat-button-toggle
         mwlCalendarPreviousView
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false"
-      >
-        Previous
-      </div>
-      <div
-        class="btn btn-outline-secondary"
+        [checked]="false">Previous</mat-button-toggle>
+      <mat-button-toggle
         mwlCalendarToday
         [(viewDate)]="viewDate"
-      >
-        Today
-      </div>
-      <div
-        class="btn btn-primary"
+        [checked]="true">Today</mat-button-toggle>
+      <mat-button-toggle
         mwlCalendarNextView
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false"
-      >
-        Next
-      </div>
-    </div>
+        [checked]="false">Next</mat-button-toggle>
+    </mat-button-toggle-group>
+
   </div>
   <div class="col-md-4">
     <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
   </div>
   <div class="col-md-4">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
-        (click)="view = CalendarView.Month"
-        [class.active]="view === CalendarView.Month"
-      >
-        Month
-      </div>
-      <div
-        class="btn btn-primary"
-        (click)="view = CalendarView.Week"
-        [class.active]="view === CalendarView.Week"
-      >
-        Week
-      </div>
-      <div
-        class="btn btn-primary"
-        (click)="view = CalendarView.Day"
-        [class.active]="view === CalendarView.Day"
-      >
-        Day
-      </div>
-    </div>
+
+    <mat-button-toggle-group color="accent" name="calandarView" aria-label="Font Style">
+      <mat-button-toggle (click)="view = CalendarView.Month" [checked]="view === CalendarView.Month" >Month</mat-button-toggle>
+      <mat-button-toggle (click)="view = CalendarView.Week" [checked]="view === CalendarView.Week" >Week</mat-button-toggle>
+      <mat-button-toggle (click)="view = CalendarView.Day" [checked]="view === CalendarView.Day" >Day</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <span style="margin-left:15px;">
+        <button mat-mini-fab color="primary" (click)="createEvent()">
+          <mat-icon aria-label="tda da">add</mat-icon>
+        </button>
+    </span>
+
   </div>
 </div>
 <br />

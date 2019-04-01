@@ -8,20 +8,41 @@
   <div mat-dialog-content>
 
     <mat-form-field class="example-full-width">
-      <input
-        formControlName="name"
-        autocomplete="off"
-        required
-        matInput
-        cdkFocusInitial
-        placeholder="Event Name">
+      <input formControlName="name" autocomplete="off" required matInput cdkFocusInitial placeholder="Event Name">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <input
-        matInput
-        formControlName="owner"
-        placeholder="Owner Name">
+      <input matInput formControlName="owner" placeholder="Owner Name">
+    </mat-form-field>
+
+    <mat-form-field class="ff-full-width">
+      <input matInput placeholder="Add Group" name="group" formControlName="group" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onGroupSelected($event)">
+        <mat-option *ngFor="let group of groups" [value]="group">
+          {{group.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="ff-full-width">
+      <mat-placeholder>Start Time</mat-placeholder>
+      <mat-datetimepicker-toggle [for]="startDatetimePicker" matSuffix></mat-datetimepicker-toggle>
+      <mat-datetimepicker [touchUi]="true" mode="auto" #startDatetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
+      <input matInput formControlName="start_time" [matDatetimepicker]="startDatetimePicker" required autocomplete="false">
+    </mat-form-field>
+    <!-- https://github.com/kuhnroyal/mat-datetimepicker -->
+
+
+    <mat-form-field class="ff-full-width">
+      <mat-placeholder>End Time</mat-placeholder>
+      <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
+      <mat-datetimepicker [touchUi]="true" mode="auto" #datetimePicker type="datetime" openOnFocus="true" timeInterval="15"></mat-datetimepicker>
+      <input matInput formControlName="end_time" [matDatetimepicker]="datetimePicker" required autocomplete="false">
+    </mat-form-field>
+
+    <mat-form-field class="ff-full-width">
+      <input matInput placeholder="location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+        #search formControlName="location">
     </mat-form-field>
 
   </div>
@@ -29,11 +50,7 @@
 
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!eventForm.valid"
-      (click)="submit()">
+    <button mat-raised-button color="primary" [disabled]="!eventForm.valid" (click)="submit()">
       Create
     </button>
   </div>

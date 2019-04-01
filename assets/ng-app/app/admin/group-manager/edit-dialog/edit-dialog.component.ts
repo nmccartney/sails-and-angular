@@ -50,7 +50,7 @@ export class EditDialogComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          // console.log('get group success : ', data);
+          console.log('get group success : ', data);
           this.group = data;
           this.users = data.users;
           this.groupForm.controls.name.setValue(this.group.name);

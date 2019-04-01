@@ -32,6 +32,14 @@ module.exports = {
       required: true
     },
 
+    first_name: {
+      type: 'string',
+    },
+
+    last_name: {
+      type: 'string'
+    },
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
@@ -46,7 +54,7 @@ module.exports = {
       via: 'owner'
     },
 
-    groups:{
+    groups: {
       collection: 'group',
       via: 'users'
     }
@@ -54,6 +62,8 @@ module.exports = {
 
   customToJSON: function () {
     // return this;
+    this['full_name'] = this.first_name + ' ' + this.last_name;
+
     return _.omit(this, ['password']);
   },
 
@@ -68,6 +78,23 @@ module.exports = {
         return cb();
       });
     });
+  },
+
+  beforeUpdate: (user, cb) => {
+    sails.log('before user updating lets', JSON.stringify(user));
+    if (!user.password) {
+      return cb();
+    }
+    sails.log('got new password...', JSON.stringify(user));
+    return cb();
+    // bcrypt.genSalt(10, function (err, salt) {
+    //   bcrypt.hash(user.password, salt, null, function (err, hash) {
+    //     if (err) return cb(err);
+    //     user.password = hash;
+    //     sails.log('User updates - ', JSON.stringify(user));
+    //     return cb();
+    //   });
+    // });
   }
 
 };

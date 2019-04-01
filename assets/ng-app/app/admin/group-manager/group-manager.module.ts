@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { GroupManagerComponent } from './group-manager.component';
-import { MatFormFieldModule, MatToolbarModule, MatTableModule, MatButtonModule, MatInputModule, MatDialogModule, MatChipsModule, MatIconModule, MatAutocompleteModule, MatSnackBarModule, MatTabsModule } from '@angular/material';
+import { MatFormFieldModule, MatToolbarModule, MatTableModule, MatButtonModule, MatInputModule, MatDialogModule, MatChipsModule, MatIconModule, MatAutocompleteModule, MatSnackBarModule, MatTabsModule, MatListModule } from '@angular/material';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EventManagerModule } from '../event-manager/event-manager.module';
+import { GroupiesViewComponent } from './groupies-view/groupies-view.component';
+import { AgmCoreModule } from '@agm/core';
+import { EditChatComponent } from './edit-dialog/edit-chat/edit-chat.component';
 
 @NgModule({
   imports: [
@@ -15,6 +18,7 @@ import { EventManagerModule } from '../event-manager/event-manager.module';
     FlexLayoutModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatListModule,
     MatToolbarModule,
     MatTableModule,
     MatTabsModule,
@@ -24,7 +28,8 @@ import { EventManagerModule } from '../event-manager/event-manager.module';
     MatIconModule,
     MatAutocompleteModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule,
   ],
   exports:[
     GroupManagerComponent
@@ -32,7 +37,9 @@ import { EventManagerModule } from '../event-manager/event-manager.module';
   declarations: [
     GroupManagerComponent,
     CreateDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    GroupiesViewComponent,
+    EditChatComponent
   ],
   entryComponents:[
     CreateDialogComponent,

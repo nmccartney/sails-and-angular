@@ -16,7 +16,8 @@ import {
   MatDatepickerModule,
   MatSortModule,
   DateAdapter,
-  MAT_DATE_LOCALE
+  MAT_DATE_LOCALE,
+  MatButtonToggleModule
 } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -38,6 +39,7 @@ import { MatMomentDatetimeModule, MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAda
     }),
     FlexLayoutModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatTableModule,
@@ -63,9 +65,11 @@ import { MatMomentDatetimeModule, MAT_MOMENT_DATETIME_FORMATS, MomentDatetimeAda
   exports: [
     EventCalendarComponent,
     EventManagerComponent,
+    CreateDialogComponent,
   ],
   entryComponents: [
-    EditDialogComponent
+    EditDialogComponent,
+    CreateDialogComponent
   ],
 })
 export class EventManagerModule { }

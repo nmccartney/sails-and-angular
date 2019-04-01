@@ -12,8 +12,25 @@ export class AppComponent implements OnInit {
   constructor(private sails: SailsClient) { }
 
   ngOnInit() {
-    // this.sails.get('/api').subscribe(res => {
-    //   console.log(res);
-    // });
+    console.log('sails - ', this.sails);
+
+    this.sails.on('user').subscribe(res => {
+      console.log('WB-user:',res);
+    });
+
+    this.sails.on('message').subscribe(res => {
+      console.log('WB-message:',res);
+    });
+
+    this.sails.on('group').subscribe(res => {
+      console.log('WB-group:',res);
+    });
+
+    this.sails.on('/message').subscribe(res => {
+      console.log('WB-message:',res);
+    });
+    this.sails.requestErrors.subscribe(res => {
+      console.log('WB-errors:',res);
+    });
   }
 }

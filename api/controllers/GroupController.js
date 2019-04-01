@@ -90,6 +90,7 @@ module.exports = {
       .findOne(data)
       .populate('owner')
       .populate('users')
+      .populate('events')
       .exec((err, group) => {
         if (err) {
           sails.log.info('[GroupView Error] : ', JSON.stringify(err));

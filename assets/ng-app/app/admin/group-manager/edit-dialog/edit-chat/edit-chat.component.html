@@ -1,0 +1,27 @@
+
+<div class="messages-container">
+  <section class="message-container" *ngFor="let message of messages">
+    {{message.author.username}}: {{message.content}}
+    <div>{{message.createdAt | date:"h:mm"}}</div>
+  </section>
+</div>
+
+<form [formGroup]="messageForm" novalidate>
+  <div class="create-message-container mat-elevation-z3">
+    <mat-form-field floatLabel="never" class="ff-full-width">
+      <mat-label>Enter Message</mat-label>
+      <textarea matInput
+                formControlName="content"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="create-message-action">
+    <button mat-mini-fab color="primary" (click)="sendMessage()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</form>
