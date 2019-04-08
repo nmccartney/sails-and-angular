@@ -1,0 +1,6 @@
+<div class="map-toolbar">
+  <ng-content></ng-content>
+  <div class="toolbar-menu" *ngIf="menuOpen">
+    <ng-content select=".toolbar-menu-item"></ng-content>
+  </div>
+</div>

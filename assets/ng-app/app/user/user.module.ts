@@ -3,10 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ViewComponent } from './view/view.component';
 import { RouterModule } from '@angular/router';
 import { userRoutes } from './user.routes';
-import { MatTabsModule, MatTableModule, MatButtonModule, MatCardModule, MatToolbarModule } from '@angular/material';
+import { MatTabsModule, MatTableModule, MatButtonModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule } from '@angular/material';
 import { GroupModule } from '../group/group.module';
 import { UserManagerComponent } from './user-manager/user-manager.component';
 import { EventModule } from '../event/event.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MapModule } from '../map/map.module';
+import { MessageModule } from '../message/message.module';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 @NgModule({
@@ -18,9 +22,16 @@ import { EventModule } from '../event/event.module';
     MatCardModule,
     MatToolbarModule,
     MatTableModule,
+    MatIconModule,
+    MatListModule,
+    MapModule,
     GroupModule,
     EventModule,
+    MessageModule,
   ],
-  declarations: [ViewComponent, UserManagerComponent]
+  exports:[
+    UserListComponent
+  ],
+  declarations: [ViewComponent, UserManagerComponent, UserProfileComponent, UserListComponent]
 })
 export class UserModule { }

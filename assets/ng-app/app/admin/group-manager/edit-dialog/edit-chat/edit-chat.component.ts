@@ -61,6 +61,10 @@ export class EditChatComponent implements OnInit {
           this.messages.push(res);
         });
     });
+
+    this.sails.on('message').subscribe(res => {
+      console.log('hello ',res);
+    });
   }
 
   sendMessage() {

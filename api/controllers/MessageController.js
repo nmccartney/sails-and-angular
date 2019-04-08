@@ -57,6 +57,8 @@ module.exports = {
           return res.badRequest(err);
         }
         Group.publish([newData.group], message);
+        sails.sockets
+          .broadcast(Group.getRoomName(newData.group), "message", message);
         sails.log.info(Group.getRoomName(newData.group));
         return res.ok(message);
       });

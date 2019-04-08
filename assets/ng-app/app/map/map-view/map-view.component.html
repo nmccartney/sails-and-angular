@@ -1,0 +1,67 @@
+<mat-sidenav-container>
+
+  <mat-sidenav-content>
+    <div class="map-view">
+
+      <div class="legend">
+          <div> longitude:{{currLng}}</div>
+          <div> latitude:{{currLat}}</div>
+          <div> zoom:{{currZoom}}</div>
+      </div>
+
+      <agm-map [latitude]="latitude" [zoom]="zoom" [longitude]="longitude"
+          (mapReady)="onMapReady($event)"
+          (boundsChange)="onBoundsChange($event)"
+          (centerChange)="onCenterChange($event)"
+          (zoomChange)="onZoomChange($event)">
+        <!-- <agm-marker [latitude]="latitude" [longitude]="latitude"></agm-marker> -->
+      </agm-map>
+
+      <app-map-toolbar #mapToolBar>
+
+        <button mat-fab color="primary" (click)="mapToolBar.toggle()">
+          <mat-icon *ngIf="!mapToolBar.menuOpen" aria-label="map navigation">more_vert</mat-icon>
+          <mat-icon *ngIf="mapToolBar.menuOpen" aria-label="map navigation">close</mat-icon>
+        </button>
+
+        <button mat-fab class="toolbar-menu-item"  (click)="findFriendList.toggle()">
+          <mat-icon aria-label="places">place</mat-icon>
+        </button>
+
+        <button mat-fab class="toolbar-menu-item" (click)="findFriendList.toggle()">
+          <mat-icon aria-label="find friends">person_pin</mat-icon>
+        </button>
+
+        <button mat-fab class="toolbar-menu-item" (click)="findMyLocation()">
+          <mat-icon aria-label="find myself">my_location</mat-icon>
+        </button>
+
+      </app-map-toolbar>
+    </div>
+  </mat-sidenav-content>
+
+  <mat-sidenav
+    #findFriendList
+    [fixedInViewport]="true"
+    [fixedTopGap]="64+48"
+    [position]="'end'"
+    (openedChange)="friendListOpened = !friendListOpened"
+    [mode]="'push'">
+    <!-- <p><button mat-button (click)="findFriendList.toggle()">Toggle</button></p> -->
+
+    <div style="width:400px;">
+
+      <app-user-list
+        *ngIf="friendListOpened"
+        [group]="{uid: '5f34566f-b18d-39a4-a96a-1d9db6dc8582'}">
+      </app-user-list>
+
+      <!-- <app-place-list
+        *ngIf="friendListOpened">
+      </app-place-list> -->
+
+    </div>
+
+  </mat-sidenav>
+
+</mat-sidenav-container>

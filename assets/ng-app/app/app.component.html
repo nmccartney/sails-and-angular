@@ -1,7 +1,21 @@
-<!-- <mat-toolbar>
-  <span>My Sails & Angular Application</span>
-</mat-toolbar> -->
+<app-header (onMenuSelect)="menuHandler($event)"></app-header>
 
-<app-header></app-header>
+<mat-sidenav-container>
 
-<router-outlet></router-outlet>
+  <mat-sidenav #sidenav
+    [fixedInViewport]="true"
+    [fixedTopGap]="64"
+    [position]="'start'"
+    [mode]="'push'">
+    <!-- <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p> -->
+
+    <app-group-list></app-group-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

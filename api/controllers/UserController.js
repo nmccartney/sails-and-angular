@@ -83,9 +83,16 @@ module.exports = {
   },
 
   groups: (req, res) => {
+    if (!req.params && !req.params.uid) {
+      return res.badRequest(err);
+    }
     data = {
       uid: req.params.uid,
     }
+
+    sails.log.
+      info('[UserGroups params] : ', JSON.stringify(req.params));
+
 
     User.findOne(data)
       .populate('groups')
@@ -93,6 +100,11 @@ module.exports = {
         if (err) {
           sails.log.info('[UserGroups Error] : ', JSON.stringify(err));
           return res.badRequest(err);
+        }
+
+        if (!user) {
+          sails.log.info('[UserGroups Error] : ', 'no user found');
+          return res.badRequest('no user found');
         }
 
         return res.ok(user.groups);
@@ -114,6 +126,35 @@ module.exports = {
 
         return res.ok(user.events);
       });
-  }
+  },
+
+  users: (req, res) => {
+    if (!req.params && !req.params.uid) {
+      return res.badRequest(err);
+    }
+    data = {
+      uid: req.params.uid,
+    }
+
+    sails.log.
+      info('[UserUsers params] : ', JSON.stringify(req.params));
+
+
+    User.findOne(data)
+      .populate('users')
+      .exec((err, user) => {
+        if (err) {
+          sails.log.info('[UserUsers Error] : ', JSON.stringify(err));
+          return res.badRequest(err);
+        }
+
+        if (!user) {
+          sails.log.info('[UserGroups Error] : ', 'no user found');
+          return res.badRequest('no user found');
+        }
+
+        return res.ok(user.groups);
+      });
+  },
 
 };

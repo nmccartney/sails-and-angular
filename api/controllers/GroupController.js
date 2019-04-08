@@ -98,9 +98,37 @@ module.exports = {
         }
 
         return res.ok(group);
-      })
-  }
+      });
+  },
 
+  users: (req, res) => {
+    if (!req.params && !req.params.uid) {
+      return res.badRequest(err);
+    }
+    data = {
+      uid: req.params.uid,
+    }
+
+    sails.log.
+    info('[GroupUsers params] : ', JSON.stringify(req.params));
+
+
+    Group.findOne(data)
+      .populate('users')
+      .exec((err, group) => {
+        if (err) {
+          sails.log.info('[GroupUsers Error] : ', JSON.stringify(err));
+          return res.badRequest(err);
+        }
+
+        if (!group) {
+          sails.log.info('[GroupUsers Error] : ', 'no group found');
+          return res.badRequest('no user found');
+        }
+
+        return res.ok(group.users);
+      });
+  }
 };
 
 

@@ -1,0 +1,45 @@
+<mat-nav-list>
+
+  <h3 mat-subheader>
+    Friends
+  </h3>
+
+  <mat-list-item style="color:royalblue;">
+      <mat-icon mat-list-icon>person_add</mat-icon>
+      <p mat-line>Add New Friend</p>
+    </mat-list-item>
+
+  <!-- <h3 mat-subheader>
+    Pending
+  </h3>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>person_outline</mat-icon>
+    <p mat-line>None Pending</p>
+  </mat-list-item>
+
+  <h3 mat-subheader>
+    Available
+  </h3>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>person_outline</mat-icon>
+    <p mat-line>No One is Available</p>
+  </mat-list-item>
+
+  <h3 mat-subheader>
+    Unavailable
+  </h3> -->
+
+  <mat-list-item *ngFor="let user of users">
+    <mat-icon mat-list-icon>person</mat-icon>
+    <div mat-line>
+      <span style="margin-right:20px;">{{user.username}}</span>
+      <span style="float:right; margin-right:10px; color:gray;">
+          <mat-icon aria-label="">signal_wifi_off</mat-icon>
+      </span>
+    </div>
+    <!-- <p mat-line>{{user.username}}</p> -->
+  </mat-list-item>
+
+</mat-nav-list>

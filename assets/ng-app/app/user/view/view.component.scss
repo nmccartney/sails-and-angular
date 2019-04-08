@@ -9,3 +9,22 @@ article{
 section{
   margin-bottom: 15px;
 }
+
+#user-tabs{
+  position: relative;
+  // background: red;
+  // height: calc(100% - 64px) !important ;
+  mat-tab-body.mat-tab-body,
+  .mat-tab-body-content{
+    height: calc(100% - calc(64px - 48px)) !important ;
+  }
+}
+
+.mat-tab-body-content{
+  height: calc(100% - calc(64px - 48px)) !important ;
+}
+
+
+// #user-tabs{
+//   height: calc(100% - calc(64px - 48px)) !important ;
+// }

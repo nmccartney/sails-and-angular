@@ -63,11 +63,13 @@ module.exports.routes = {
   'post /user/:uid': 'UserController.update',
   'get /user/:uid/groups': 'UserController.groups',
   'get /user/:uid/events': 'UserController.events',
+  'get /user/:uid/users': 'UserController.users',
 
   'get /group': 'GroupController.index',// protect as master
   'post /group': 'GroupController.create',
   'delete /group': 'GroupController.destroy',
   'get /group/:uid': 'GroupController.view',
+  'get /group/:uid/users': 'GroupController.users',
   'post /group/:uid': 'GroupController.update',
 
   'get /group/:id/messages': 'MessageController.index',

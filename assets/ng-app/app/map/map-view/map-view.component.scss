@@ -1,0 +1,30 @@
+agm-map {
+  // display: block;
+  height: 100%;
+  width:100%;
+}
+
+.map-view{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100% - calc(64px + 48px));
+  width:100%;
+}
+
+
+.toolbar-menu-item.mat-fab  {
+  margin-bottom: 10px;
+}
+
+
+.legend{
+  position: absolute;
+  top: 20px;
+  left:20px;
+  width: 400px;
+  height: 200px;
+  background: rgba(255,255,255,.75);
+  padding: 10px;
+  z-index: 5;
+}

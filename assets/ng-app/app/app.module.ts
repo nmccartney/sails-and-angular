@@ -20,6 +20,8 @@ import { HeaderModule } from './header/header.module';
 import { AgmCoreModule } from '@agm/core';
 import { AdminModule } from './admin/admin.module';
 import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
+import { GroupModule } from './group/group.module';
+import { MapModule } from './map/map.module';
 
 const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
 
@@ -58,6 +60,7 @@ const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
     //application specific
     HomeModule,
     HeaderModule,
+    GroupModule,
     // Remark: because you havent defined any routes, I have to pass an empty
     // route collection to forRoot, as the first parameter is mandatory.
     RouterModule.forRoot([

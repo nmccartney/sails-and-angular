@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
-import { MatToolbarModule, MatDialogModule, MatTabsModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatDialogModule, MatTabsModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { AuthModule } from '../auth/auth.module';
 import { LoginDialogComponent } from '../auth/login-dialog/login-dialog.component';
 
@@ -12,6 +12,7 @@ import { LoginDialogComponent } from '../auth/login-dialog/login-dialog.componen
     MatToolbarModule,
     MatDialogModule,
     MatTabsModule,
+    MatIconModule,
     AuthModule
   ],
   exports:[

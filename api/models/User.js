@@ -40,6 +40,14 @@ module.exports = {
       type: 'string'
     },
 
+    status: {
+      type: 'string'
+    },
+
+    status_message: {
+      type: 'string'
+    },
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

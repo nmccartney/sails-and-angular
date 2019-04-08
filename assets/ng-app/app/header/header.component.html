@@ -1,4 +1,8 @@
 <mat-toolbar color="primary"  class="mat-elevation-z1">
+  <button  mat-icon-button aria-label="groups" (click)="menuHandler($event)">
+    <mat-icon *ngIf="!menuSelected">menu</mat-icon>
+    <mat-icon *ngIf="menuSelected">close</mat-icon>
+  </button>
   <span>My Sails & Angular Application</span>
   <span class="filler"></span>
   <span>

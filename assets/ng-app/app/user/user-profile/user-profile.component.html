@@ -1,0 +1,21 @@
+
+<article>
+    <mat-toolbar color="primary" class="mat-elevation-z1">
+      <span>Details</span>
+    </mat-toolbar>
+
+    <mat-card>
+
+      <mat-card-header>
+        <mat-card-title>{{user?.username}}</mat-card-title>
+        <mat-card-subtitle>{{user?.uid}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <pre> <code>{{store || {} | json}}</code></pre>
+      </mat-card-content>
+      <mat-card-actions align="start">
+        <button mat-raised-button (click)="onAction1">Edit</button>
+
+      </mat-card-actions>
+    </mat-card>
+  </article>

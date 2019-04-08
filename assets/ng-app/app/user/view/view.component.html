@@ -1,43 +1,26 @@
-<mat-tab-group>
+<mat-tab-group [dynamicHeight]="true" id="user-tabs">
+
+  <mat-tab label="Map">
+    <app-map-view></app-map-view>
+  </mat-tab>
+
+  <mat-tab label="Chat">
+    <app-chat-view></app-chat-view>
+  </mat-tab>
 
   <mat-tab label="Profile">
-
-    <article>
-      <mat-toolbar color="primary" class="mat-elevation-z1">
-        <span>Details</span>
-      </mat-toolbar>
-
-      <mat-card>
-
-        <mat-card-header>
-          <mat-card-title>{{user?.username}}</mat-card-title>
-          <mat-card-subtitle>{{user?.uid}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <pre> <code>{{store || {} | json}}</code></pre>
-        </mat-card-content>
-        <mat-card-actions align="start">
-          <button mat-raised-button (click)="onAction1">Edit</button>
-
-        </mat-card-actions>
-      </mat-card>
-    </article>
-
+    <app-user-profile></app-user-profile>
   </mat-tab>
 
   <mat-tab label="Users">
 
-    <article>
-      <h3>Users:</h3>
+    Users page is a work in progress.
 
-      <ul>
-        <li *ngFor="let user of users">
-          <pre>
-              <code>{{user.username | json}}</code>
-            </pre>
-        </li>
-      </ul>
-    </article>
+    <!-- <article>
+      <mat-list>
+        <mat-list-item  *ngFor="let user of users">{{user.username}}</mat-list-item>
+      </mat-list>
+    </article> -->
 
   </mat-tab>
 
@@ -54,13 +37,13 @@
 
   <mat-tab label="Events">
 
-      <article>
-        <section>
-          <!-- <event-manager></event-manager> -->
-          <app-event-view></app-event-view>
-        </section>
-      </article>
+    <article>
+      <section>
+        <!-- <event-manager></event-manager> -->
+        <app-event-view></app-event-view>
+      </section>
+    </article>
 
-    </mat-tab>
+  </mat-tab>
 
 </mat-tab-group>
