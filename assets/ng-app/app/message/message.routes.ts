@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { ViewComponent } from "./view/view.component";
 import { GuardService } from "../auth/guard.service";
+import { ChatViewComponent } from "./chat-view/chat-view.component";
 
-export const userRoutes: Routes = [
+export const messageRoutes: Routes = [
   {
-    path: 'user',
-    component: ViewComponent,
+    path: 'messages',
+    component: ChatViewComponent,
     canActivate: [GuardService]
   },
   // lazy load

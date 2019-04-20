@@ -4,11 +4,21 @@ agm-map {
   width:100%;
 }
 
-.map-view{
+.map-view-wrapper{
   position: absolute;
-  top: 0;
+  // position: relative;
+  top: calc(64px + 48px);
   left: 0;
   height: calc(100% - calc(64px + 48px));
+  width:100%;
+}
+
+.map-view{
+  position: relative;
+  top: 0;
+  left: 0;
+  // height: calc(100% - calc(64px + 48px));
+  height: 100%;
   width:100%;
 }
 

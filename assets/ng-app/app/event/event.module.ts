@@ -11,6 +11,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { MatDatetimepickerModule, MAT_DATETIME_FORMATS, } from '@mat-datetimepicker/core';
 import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 import { EventCalendarComponent } from './event-calendar/event-calendar.component';
+import { eventRoutes } from './event.routes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -38,7 +40,8 @@ import { EventCalendarComponent } from './event-calendar/event-calendar.componen
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    RouterModule.forRoot(eventRoutes),
   ],
   exports: [
     EventViewComponent

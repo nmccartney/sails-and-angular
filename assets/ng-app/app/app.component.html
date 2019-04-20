@@ -1,10 +1,9 @@
-<app-header (onMenuSelect)="menuHandler($event)"></app-header>
 
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav
-    [fixedInViewport]="true"
-    [fixedTopGap]="64"
+    [fixedInViewport]="false"
+    [fixedTopGap]="0"
     [position]="'start'"
     [mode]="'push'">
     <!-- <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p> -->
@@ -14,6 +13,32 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+
+    <app-header (onMenuSelect)="menuHandler($event)"></app-header>
+
+
+    <nav mat-tab-nav-bar mat-stretch-tabs>
+
+      <a mat-tab-link
+        *ngFor="let link of navLinks"
+        [routerLink]="link.link"
+        routerLinkActive #rla="routerLinkActive"
+        [active]="rla.isActive">
+        <mat-icon>{{link.icon}}</mat-icon>
+        {{link.label}}
+      </a>
+
+      <!-- <a mat-tab-link
+        (click)="activeLink = link"
+        [active]="activeLink == link"> Map</a> -->
+
+      <!-- <a mat-tab-link
+          (click)="activeLink = link"
+          [active]="activeLink == link"> Chat</a> -->
+      <!-- <a mat-tab-link disabled>Disabled Link</a> -->
+    </nav>
+
+
 
     <router-outlet></router-outlet>
 

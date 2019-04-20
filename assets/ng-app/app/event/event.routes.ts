@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { ViewComponent } from "./view/view.component";
 import { GuardService } from "../auth/guard.service";
+import { EventViewComponent } from "./event-view/event-view.component";
 
-export const userRoutes: Routes = [
+export const eventRoutes: Routes = [
   {
-    path: 'user',
-    component: ViewComponent,
+    path: 'events',
+    component: EventViewComponent,
     canActivate: [GuardService]
   },
   // lazy load

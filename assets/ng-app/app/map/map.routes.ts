@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { ViewComponent } from "./view/view.component";
+import { MapViewComponent } from "./map-view/map-view.component";
 import { GuardService } from "../auth/guard.service";
 
-export const userRoutes: Routes = [
+export const mapRoutes: Routes = [
   {
-    path: 'user',
-    component: ViewComponent,
+    path: 'map',
+    component: MapViewComponent,
     canActivate: [GuardService]
   },
   // lazy load
