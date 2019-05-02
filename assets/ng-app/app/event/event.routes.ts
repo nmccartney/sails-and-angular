@@ -8,6 +8,11 @@ export const eventRoutes: Routes = [
     component: EventViewComponent,
     canActivate: [GuardService]
   },
+  {
+    path: 'events/:group_uid',
+    component: EventViewComponent,
+    canActivate: [GuardService]
+  },
   // lazy load
   // {
   //   path: 'customers',

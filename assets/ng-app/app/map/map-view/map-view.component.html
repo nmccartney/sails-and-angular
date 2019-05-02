@@ -5,9 +5,10 @@
           <div class="map-view">
 
             <div class="legend">
-                <div> longitude:{{currLng}}</div>
-                <div> latitude:{{currLat}}</div>
-                <div> zoom:{{currZoom}}</div>
+              <div>group: {{group.uid}}</div>
+              <div> longitude:{{currLng}}</div>
+              <div> latitude:{{currLat}}</div>
+              <div> zoom:{{currZoom}}</div>
             </div>
 
             <agm-map [latitude]="latitude" [zoom]="zoom" [longitude]="longitude"
@@ -54,7 +55,7 @@
 
             <app-user-list
               *ngIf="friendListOpened"
-              [group]="{uid: '5f34566f-b18d-39a4-a96a-1d9db6dc8582'}">
+              [group]="group">
             </app-user-list>
 
             <!-- <app-place-list

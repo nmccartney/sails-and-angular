@@ -8,6 +8,11 @@ export const messageRoutes: Routes = [
     component: ChatViewComponent,
     canActivate: [GuardService]
   },
+  {
+    path: 'messages/:group_uid',
+    component: ChatViewComponent,
+    canActivate: [GuardService]
+  },
   // lazy load
   // {
   //   path: 'customers',

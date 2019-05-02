@@ -1,16 +1,18 @@
 <section class="group-list-container" style="max-width:80%; min-width: 400px;">
 
-  <mat-list>
+  <mat-nav-list>
     <h3 mat-subheader>
       <button mat-icon-button class="toolbar-menu-item">
         <mat-icon aria-label="">group_add</mat-icon>
       </button>
     </h3>
-    <mat-list-item *ngFor="let group of groups">
+    <mat-list-item
+      *ngFor="let group of groups"
+      (click)="clickHander(group,$event)">
       <mat-icon mat-list-icon>group</mat-icon>
       <h4 mat-line>{{group.name}}</h4>
       <p mat-line>Person A, Person B</p>
     </mat-list-item>
-  </mat-list>
+  </mat-nav-list>
 
 </section>

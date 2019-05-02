@@ -4,6 +4,11 @@ import { GuardService } from "../auth/guard.service";
 
 export const mapRoutes: Routes = [
   {
+    path: 'map/:group_uid',
+    component: MapViewComponent,
+    canActivate: [GuardService]
+  },
+  {
     path: 'map',
     component: MapViewComponent,
     canActivate: [GuardService]

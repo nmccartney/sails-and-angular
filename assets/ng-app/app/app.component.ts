@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SailsClient } from 'ngx-sails';
 import { MatSidenav } from '@angular/material';
 import { Router } from '@angular/router';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit {
   title = 'ng-v6';
   navLinks: any[];
   activeLinkIndex = -1;
+  activeGroup: any;
 
   constructor(
     private sails: SailsClient,
@@ -21,7 +23,7 @@ export class AppComponent implements OnInit {
       {
         label: 'Message',
         link: './messages',
-        icon:'chat',
+        icon: 'chat',
         index: 0
       }, {
         label: 'Map',
@@ -68,5 +70,16 @@ export class AppComponent implements OnInit {
 
   menuHandler(value: any) {
     this.sidenav.toggle();
+  }
+
+  getTabUrl(link) {
+    return this.activeGroup ? link + '/' + this.activeGroup.uid : link;
+  }
+
+  onGroupSelected(event: { group: any, event: any }) {
+    console.log(event);
+    this.activeGroup = event.group;
+    this.sidenav.toggle();
+    this.router.navigate(['/map', event.group.uid]);
   }
 }

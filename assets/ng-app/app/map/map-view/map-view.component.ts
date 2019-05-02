@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { AgmMap } from '@agm/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-map-view',
@@ -12,20 +14,38 @@ export class MapViewComponent implements OnInit {
   public longitude: number = -79.9958864;
   public zoom: number = 15;
 
-  friendListOpened:boolean = false;
+  private _users;
+  private _groupUID;
+  group: any = {
+    uid: '5f34566f-b18d-39a4-a96a-1d9db6dc8582'
+  };
 
-  constructor(private _cd:ChangeDetectorRef) { }
+  friendListOpened: boolean = false;
+
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
+
+    this._route.params.subscribe((params)=>{
+      // this._groupUID = +params.get('group_uid');
+      this.group['uid'] = params['group_uid'];
+      console.log('uid', params);
+      this._cd.markForCheck();
+    });
+
   }
 
   map;
-  onMapReady(event){
+  onMapReady(event) {
     console.log('onMapReady:', event);
     this.map = event;
   }
 
-  onBoundsChange(event){
+  onBoundsChange(event) {
     // console.log('onBoundsChange:', event);
     // this._cd.markForCheck();
   }
@@ -34,20 +54,20 @@ export class MapViewComponent implements OnInit {
   currLat = this.latitude;
   currZoom = this.zoom;
 
-  onCenterChange(event){
+  onCenterChange(event) {
     // console.log('onCenterChange:', event);
     this.currLng = event.lng;
     this.currLat = event.lat;
     this._cd.markForCheck();
   }
 
-  onZoomChange(event){
+  onZoomChange(event) {
     // console.log('onZoomChange:', event);
     this.currZoom = event;
     this._cd.markForCheck();
   }
 
-  @ViewChild(AgmMap) mapElem:AgmMap;
+  @ViewChild(AgmMap) mapElem: AgmMap;
 
   findMyLocation() {
     if (navigator.geolocation) {
