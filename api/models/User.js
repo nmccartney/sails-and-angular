@@ -15,6 +15,12 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+    // id: {
+    //   type: 'string',
+    //   columnName: 'uid',
+    //   required: true
+    // },
+
     uid: {
       type: 'string',
       // unique: true,
@@ -65,7 +71,32 @@ module.exports = {
     groups: {
       collection: 'group',
       via: 'users'
-    }
+    },
+
+    app_invites: {
+      collection: 'appinvite',
+      via: 'owner'
+    },
+
+    app_invite: {
+      collection: 'appinvite',
+      via: 'owner'
+    },
+
+    group_invites: {
+      collection: 'groupinvite',
+      via: 'invited'
+    },
+
+    event_invites: {
+      collection: 'eventinvite',
+      via: 'invited'
+    },
+
+    user_invites: {
+      collection: 'userinvite',
+      via: 'invited'
+    },
   },
 
   customToJSON: function () {
