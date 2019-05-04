@@ -2,7 +2,36 @@
 
 Inspired by [sails-angular-cli-guide](https://fullstackengine.net/sails-angular-cli-guide/)
 
-a [Sails v1](https://sailsjs.com) & [Angular](https://angular.io/)application
+A [Sails v1](https://sailsjs.com) & [Angular](https://angular.io/) application with Material Design.
+
+
+### Dependencies
+
++ NodeJS v8
+
+
+### Quick Start
+
+```
+### install dependencies
+npm install
+
+### start up application (both angular and sails)
+npm start
+```
+
+### Deployment
+
+```
+npx shipit staging deploy
+
+### read server errors
+npx shipit staging err:log
+
+### read console logs
+npx shipit staging console:log
+```
+
 
 
 ### Links

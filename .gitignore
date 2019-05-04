@@ -106,6 +106,8 @@ node_modules
 
 .tmp
 
+dist
+
 
 ################################################
 # Miscellaneous
