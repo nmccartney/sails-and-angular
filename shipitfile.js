@@ -18,6 +18,10 @@ module.exports = function (shipit) {
     staging: {
       servers: 'root@138.197.74.131', //142.93.194.138',
       branch: 'master',
+    },
+    prod: {
+      servers: 'root@142.93.194.138', //142.93.194.138',
+      branch: 'master',
     }
   });
 
@@ -26,7 +30,7 @@ module.exports = function (shipit) {
   // });
 
   shipit.task('install', function () {
-    return shipit.remote('cd ../opt/groupes/current; npm install	');;
+    return shipit.remote('cd ../opt/groupes/current; npm install');
   });
 
   shipit.task('start', function () {
@@ -84,23 +88,40 @@ module.exports = function (shipit) {
 
     return shipit.remote(command).then(function () {
 
-      var buildCmd = 'cd ../opt/groupes/current; npm run build:dev';
+      // return shipit.remote('cd ../opt/groupes/current; npm install');
+      var newCmd = 'cd ../opt/groupes/current; npm install';
 
-      return shipit.remote(buildCmd)
+      return shipit.remote(newCmd)
         .then(function () {
-          shipit.log(require('chalk').green('Application build finished...'))
-          shipit.emit('built');
-
-          var newCmd = 'cd ../opt/groupes/current; forever -o out.log -e err.log start app.js --prod';
-
-          return shipit.remote(newCmd)
-            .then(function () {
-              shipit.log(require('chalk').green('Sever has restarted...'))
-              shipit.emit('restarted');
-            });
+          shipit.log(require('chalk').green('Sever has installed dependencies...'))
+          shipit.emit('installed');
         });
 
     });
+  });
+
+  shipit.on('installed', () => {
+    shipit.log(require('chalk').green('Building application...'))
+
+    var buildCmd = 'cd ../opt/groupes/current; npm run build:dev';
+
+    return shipit.remote(buildCmd)
+      .then(function () {
+        shipit.log(require('chalk').green('Application built.'))
+        shipit.emit('built');
+      });
+  });
+
+  shipit.on('built', () => {
+    shipit.log(require('chalk').green('Start Application'))
+
+    var newCmd = 'cd ../opt/groupes/current; forever -o out.log -e err.log start app.js --prod';
+
+    return shipit.remote(newCmd)
+      .then(function () {
+        shipit.log(require('chalk').green('Sever has restarted...'))
+        shipit.emit('started');
+      });
   });
 
 
