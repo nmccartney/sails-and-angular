@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -6,13 +6,24 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 // var jwt = require('jsonwebtoken');
 import jwt_decode from 'jwt-decode';
 
+const DEV_URL:string = 'localhost';
+const PROD_URL:string = '142.93.194.138';
+const DEV_PORT:string = '1337';
+const PROD_PORT:string = '80';
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }
+
+  url: string = !isDevMode ? PROD_URL : DEV_URL;
+  port: string = !isDevMode ? PROD_PORT : DEV_PORT;
+
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
+
+  }
 
   checkIn() {
     return this.http
-      .get<any>(`http://localhost:1337/check-in`)
+      .get<any>(`http://${this.url}:${this.port}/check-in`)
       .pipe(map(resp => {
         console.log('got resp - ', resp);
         // login successful if there's a jwt token in the response
@@ -27,7 +38,7 @@ export class AuthenticationService {
   isAuthenticated() {
     const token = localStorage.getItem('token');
     // console.log('token : ',token);
-    if(!token)return false;
+    if (!token) return false;
     // console.log('decoded : ',jwt_decode(token));
     // Check whether the token is expired and return
     // true or false
@@ -37,7 +48,7 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     return this.http
-      .post<any>(`http://localhost:1337/login`, { username, password })
+      .post<any>(`http://${this.url}:${this.port}/login`, { username, password })
       .pipe(map(resp => {
         console.log('got resp - ', resp);
         // login successful if there's a jwt token in the response
@@ -57,7 +68,7 @@ export class AuthenticationService {
     // localStorage.removeItem('currentUser');
 
     return this.http
-      .get<any>(`http://localhost:1337/logout`)
+      .get<any>(`http://${this.url}:${this.port}/logout`)
       .pipe(map(resp => {
         console.log('got logout resp - ', resp);
         // login successful if there's a jwt token in the response
@@ -72,7 +83,7 @@ export class AuthenticationService {
   }
 
   register(username: string, password: string) {
-    return this.http.post<any>(`http://localhost:1337/register`, { username, password })
+    return this.http.post<any>(`http://${this.url}:${this.port}/register`, { username, password })
       .pipe(map(resp => {
         console.log('got user - ', resp);
         // login successful if there's a jwt token in the response
