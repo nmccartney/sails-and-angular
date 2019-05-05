@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'ng-app/environments/environment';
 
 export type Message = {
   content: string,
@@ -10,6 +11,8 @@ export type Message = {
   author: string
 };
 
+const URL:string = `${environment.apiUrl}`;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,14 +21,14 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   create(params: any) {
-    return this.http.post<any>(`http://localhost:1337/group/${params.group}/message`, params)
+    return this.http.post<any>(`${URL}/group/${params.group}/message`, params)
       .pipe(map((resp: any) => {
         return resp;
       }));
   }
 
   delete(params) {
-    return this.http.delete<any>(`http://localhost:1337/message/`, params)
+    return this.http.delete<any>(`${URL}/message/`, params)
       .pipe(map((resp: any) => {
         console.log('deleted message - ', resp);
         return resp;
@@ -33,7 +36,7 @@ export class MessageService {
   }
 
   find(params: { groupId: string }) {
-    return this.http.get<any>(`http://localhost:1337/group/${params.groupId}/messages`)
+    return this.http.get<any>(`${URL}/group/${params.groupId}/messages`)
       .pipe(map((resp: any) => {
         // console.log('got message - ', resp);
         return resp;

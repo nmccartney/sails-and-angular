@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'ng-app/environments/environment';
+
+const URL:string = `${environment.apiUrl}`;
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,7 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   create(params) {
-    return this.http.post<any>(`http://localhost:1337/event`, params)
+    return this.http.post<any>(`${URL}/event`, params)
       .pipe(map((resp: any) => {
         console.log('created event - ', resp);
         return resp;
@@ -21,7 +24,7 @@ export class EventService {
     let options: any = {
       body: params
     }
-    return this.http.delete<any>(`http://localhost:1337/event/`, options)
+    return this.http.delete<any>(`${URL}/event/`, options)
       .pipe(map((resp: any) => {
         console.log('deleted event - ', resp);
         return resp;
@@ -29,7 +32,7 @@ export class EventService {
   }
 
   edit(params) {
-    return this.http.post<any>(`http://localhost:1337/event/${params.uid}`, params)
+    return this.http.post<any>(`${URL}/event/${params.uid}`, params)
       .pipe(map((resp: any) => {
         console.log('edited event - ', resp);
         return resp;
@@ -37,7 +40,7 @@ export class EventService {
   }
 
   find() {
-    return this.http.get<any>(`http://localhost:1337/event`)
+    return this.http.get<any>(`${URL}/event`)
       .pipe(map((resp: any) => {
         // console.log('got events - ', resp);
         return resp;
@@ -49,7 +52,7 @@ export class EventService {
       body: params
     }
     return this.http
-      .get(`http://localhost:1337/event/${params.uid}`)
+      .get(`${URL}/event/${params.uid}`)
       .pipe(map((resp: any) => {
         // console.log('got event - ', resp);
         return resp;

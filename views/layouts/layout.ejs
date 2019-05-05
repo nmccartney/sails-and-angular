@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
 
+<script  type="text/javascript">
+
+  (function (window) {
+    window['env'] = '<%= sails.config.environment %>';
+    // window.__env = window.__env || {};
+    console.log('env-', window.env);
+
+    // API url
+    // window.__env.apiUrl = 'http://dev.your-api.com';
+
+    // Whether or not to enable debug mode
+    // Setting this to false will disable console output
+    // window.__env.enableDebug = true;
+  }(this));
+
+</script>
+
 <%- body %>
+
+
 
 </html>

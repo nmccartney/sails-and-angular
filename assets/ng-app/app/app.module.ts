@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SailsClientModule, ISailsClientConfig } from 'ngx-sails';
@@ -12,7 +12,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { RouterModule } from '@angular/router';
+import { RouterModule, DefaultUrlSerializer } from '@angular/router';
 import { HomeModule } from './home/home.module';
 import { HomeViewComponent } from './home/home-view/home-view.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -22,11 +22,14 @@ import { AdminModule } from './admin/admin.module';
 import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 import { GroupModule } from './group/group.module';
 import { MapModule } from './map/map.module';
+import { environment } from 'ng-app/environments/environment';
 
-const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
 
-export function getLocalToken():any {
-  return localStorage.getItem('token');
+const socketConfig: ISailsClientConfig = { uri: environment.apiUrl || null };
+
+
+export function getLocalToken(): any {
+  return localStorage.getItem('token') || null;
 }
 
 @NgModule({
@@ -53,7 +56,7 @@ export function getLocalToken():any {
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: getLocalToken(),
+        tokenGetter: getLocalToken,
         // whitelistedDomains: ['localhost:3000'],
         // blacklistedRoutes: ['localhost:3001/auth/']
       }
@@ -76,4 +79,8 @@ export function getLocalToken():any {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    console.log((window as any).env, socketConfig);
+  }
+}

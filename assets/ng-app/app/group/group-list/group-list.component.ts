@@ -26,7 +26,7 @@ export class GroupListComponent implements OnInit {
   ngOnInit() {
     let strUser = this._us.findMe();
     this._user = strUser ? JSON.parse(strUser) : null;
-    console.log('user found! : ', this._user.uid);
+    // console.log('user found! : ', this._user.uid);
     if (this._user && this._user.uid) {
       console.log('user found! : ', this._user.uid);
       this.getGroups();

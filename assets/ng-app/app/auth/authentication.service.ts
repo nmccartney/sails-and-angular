@@ -5,17 +5,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 // var jwt = require('jsonwebtoken');
 import jwt_decode from 'jwt-decode';
+import { environment } from 'ng-app/environments/environment';
 
-const DEV_URL:string = 'localhost';
-const PROD_URL:string = '142.93.194.138';
-const DEV_PORT:string = '1337';
-const PROD_PORT:string = '80';
+const URL:string = `${environment.apiUrl}`;
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-
-  url: string = !isDevMode ? PROD_URL : DEV_URL;
-  port: string = !isDevMode ? PROD_PORT : DEV_PORT;
 
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
 
@@ -23,7 +18,7 @@ export class AuthenticationService {
 
   checkIn() {
     return this.http
-      .get<any>(`http://${this.url}:${this.port}/check-in`)
+      .get<any>(`${URL}/check-in`)
       .pipe(map(resp => {
         console.log('got resp - ', resp);
         // login successful if there's a jwt token in the response
@@ -48,7 +43,7 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     return this.http
-      .post<any>(`http://${this.url}:${this.port}/login`, { username, password })
+      .post<any>(`${URL}/login`, { username, password })
       .pipe(map(resp => {
         console.log('got resp - ', resp);
         // login successful if there's a jwt token in the response
@@ -68,7 +63,7 @@ export class AuthenticationService {
     // localStorage.removeItem('currentUser');
 
     return this.http
-      .get<any>(`http://${this.url}:${this.port}/logout`)
+      .get<any>(`${URL}/logout`)
       .pipe(map(resp => {
         console.log('got logout resp - ', resp);
         // login successful if there's a jwt token in the response
@@ -83,7 +78,7 @@ export class AuthenticationService {
   }
 
   register(username: string, password: string) {
-    return this.http.post<any>(`http://${this.url}:${this.port}/register`, { username, password })
+    return this.http.post<any>(`${URL}/register`, { username, password })
       .pipe(map(resp => {
         console.log('got user - ', resp);
         // login successful if there's a jwt token in the response
