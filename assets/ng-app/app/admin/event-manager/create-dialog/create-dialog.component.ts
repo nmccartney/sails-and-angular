@@ -26,6 +26,7 @@ export class CreateDialogComponent implements OnInit {
   private event = {};
   @ViewChild("search")
   public searchElementRef: ElementRef;
+  groups;
 
   constructor(
     public dialogRef: MatDialogRef<CreateDialogComponent>,
@@ -97,6 +98,10 @@ export class CreateDialogComponent implements OnInit {
       end_time: new FormControl( moment().add(1,'hours')),
       location: new FormControl('')
     });
+  }
+
+  onGroupSelected(event:any){
+    console.log(event);
   }
 
   submit() {

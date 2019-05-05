@@ -25,6 +25,10 @@ import { MapModule } from './map/map.module';
 
 const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
 
+export function getLocalToken():any {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -49,9 +53,7 @@ const socketConfig: ISailsClientConfig = { uri: 'http://localhost:1337' };
     ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
+        tokenGetter: getLocalToken(),
         // whitelistedDomains: ['localhost:3000'],
         // blacklistedRoutes: ['localhost:3001/auth/']
       }

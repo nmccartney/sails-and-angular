@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  private isAuthenticated: boolean = false;
+  isAuthenticated: boolean = false;
 
   @Output() onMenuSelect = new EventEmitter();
   menuSelected: boolean = false;
