@@ -107,7 +107,9 @@ node_modules
 .tmp
 
 dist
+assets/ng-dist
 
+.vscode
 
 ################################################
 # Miscellaneous
