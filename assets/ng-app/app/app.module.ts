@@ -79,8 +79,4 @@ export function getLocalToken(): any {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor() {
-    console.log((window as any).env, socketConfig);
-  }
-}
+export class AppModule { }

@@ -1,10 +1,11 @@
-import { Component, OnInit, Optional, Host } from '@angular/core';
+import { Component, OnInit, Optional, Host, Output, EventEmitter } from '@angular/core';
 import { SailsClient } from 'ngx-sails';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../authentication.service';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,13 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error = '';
 
+  @Output() login = new EventEmitter();
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private bar: MatSnackBar,
     private authenticationService: AuthenticationService,
     @Optional() @Host() private parent: LoginDialogComponent) { }
 
@@ -61,16 +65,13 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log('user  logged in ', data);
-          if (this.parent) {
-            this.parent.dialogRef.close({ returnUrl: this.returnUrl });
-          } else {
-            this.router.navigate([this.returnUrl]);
-          }
-
+          this.bar.open('User login successful.', 'success', { duration: 1000 });
+          this.login.emit(data);
         },
         error => {
           this.error = error;
           this.loading = false;
+          this.bar.open('Login Failed! Please Try again.', 'error', { duration: 3000 });
         });
   }
 }

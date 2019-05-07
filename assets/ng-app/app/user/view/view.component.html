@@ -1,3 +1,23 @@
+user view page
+
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>Hi User!</mat-grid-tile>
+  <mat-grid-tile>Create New Group!</mat-grid-tile>
+</mat-grid-list>
+
+<!-- <nav mat-tab-nav-bar mat-stretch-tabs>
+
+  <a mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="getTabUrl(link.link)"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    <mat-icon>{{link.icon}}</mat-icon>
+    {{link.label}}
+  </a>
+
+</nav> -->
+<!--
 <mat-tab-group [dynamicHeight]="true" id="user-tabs">
 
   <mat-tab label="Map">
@@ -16,19 +36,12 @@
 
     Users page is a work in progress.
 
-    <!-- <article>
-      <mat-list>
-        <mat-list-item  *ngFor="let user of users">{{user.username}}</mat-list-item>
-      </mat-list>
-    </article> -->
-
   </mat-tab>
 
   <mat-tab label="Groups">
 
     <article>
       <section>
-        <!-- <group-manager></group-manager> -->
         <app-group-view></app-group-view>
       </section>
     </article>
@@ -39,11 +52,10 @@
 
     <article>
       <section>
-        <!-- <event-manager></event-manager> -->
         <app-event-view></app-event-view>
       </section>
     </article>
 
   </mat-tab>
 
-</mat-tab-group>
+</mat-tab-group> -->

@@ -12,15 +12,15 @@ export class HomeViewComponent implements OnInit {
   constructor(private auth:AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    this.auth.checkIn().subscribe(
-      data => {
-        console.log('get check-in success : ', data);
-        this.router.navigate(['user']);
+    // this.auth.checkIn().subscribe(
+    //   data => {
+    //     console.log('get check-in success : ', data);
+    //     this.router.navigate(['user']);
 
-      },
-      error => {
-        console.log('get check-in failed : ', error);
-      });
+    //   },
+    //   error => {
+    //     console.log('get check-in failed : ', error);
+    //   });
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoginDialogComponent } from '../auth/login-dialog/login-dialog.component';
 import { AuthenticationService } from '../auth/authentication.service';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private bar: MatSnackBar,
     private auth: AuthenticationService,
     private router: Router) { }
 
@@ -52,6 +53,7 @@ export class HeaderComponent implements OnInit {
     this.auth.logout().subscribe(data => {
       console.log('logged out', data);
       this.isAuthenticated = this.auth.isAuthenticated();
+      this.bar.open('Successfully logged out!', 'success', { duration: 1000 });
       this.router.navigateByUrl('/');
     }, err => {
       console.log('error logging out ', err);

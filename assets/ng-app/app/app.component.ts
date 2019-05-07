@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   navLinks: any[];
   activeLinkIndex = -1;
   activeGroup: any;
+  private _currentUser:any;
+  get currentUser() {return this._currentUser}
 
   constructor(
     private sails: SailsClient,

@@ -20,7 +20,11 @@ module.exports.policies = {
   '*': ['authenticated', 'hasJWT'],
   // whitelist the auth controller
   'auth': {
-    '*': true
+    '*': true,
+    'checkIn': [
+      'hasJWT',
+      'authenticated',
+    ]
   },
   'user': {
     '*': true,

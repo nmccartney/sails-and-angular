@@ -6,7 +6,13 @@ export const userRoutes: Routes = [
   {
     path: 'user',
     component: ViewComponent,
-    canActivate: [GuardService]
+    canActivate: [GuardService],
+    // children:[
+    //   {
+    //     path:'',
+    //     component: ViewComponent
+    //   }
+    // ]
   },
   // lazy load
   // {

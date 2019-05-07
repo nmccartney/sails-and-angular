@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ViewComponent } from './view/view.component';
 import { RouterModule } from '@angular/router';
 import { userRoutes } from './user.routes';
-import { MatTabsModule, MatTableModule, MatButtonModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule } from '@angular/material';
+import { MatTabsModule, MatTableModule, MatButtonModule, MatCardModule, MatToolbarModule, MatListModule, MatIconModule, MatGridListModule } from '@angular/material';
 import { GroupModule } from '../group/group.module';
 import { UserManagerComponent } from './user-manager/user-manager.component';
 import { EventModule } from '../event/event.module';
@@ -24,6 +24,7 @@ import { UserListComponent } from './user-list/user-list.component';
     MatTableModule,
     MatIconModule,
     MatListModule,
+    MatGridListModule,
     MapModule,
     GroupModule,
     EventModule,

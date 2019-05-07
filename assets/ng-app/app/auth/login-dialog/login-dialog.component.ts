@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatTabGroup } from '@angular/material';
 
 @Component({
   selector: 'app-login-dialog',
@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class LoginDialogComponent implements OnInit {
 
   returnUrl: string = 'user';
+  @ViewChild(MatTabGroup) tabGroup:MatTabGroup;
 
   constructor(
     public dialogRef: MatDialogRef<LoginDialogComponent>,
@@ -16,12 +17,23 @@ export class LoginDialogComponent implements OnInit {
     this.returnUrl = data.returnUrl || this.returnUrl;
   }
 
+  ngOnInit() {
+  }
+
+  onLogin(){
+    this.dialogRef.close({ returnUrl: this.returnUrl });
+  }
+
+  onRegister(){
+    console.log('got register success. move tab to login');
+    this.tabGroup.selectedIndex = 0;
+  }
+
   // TODO: setup in view
   onNoClick(): void {
     this.dialogRef.close({ returnUrl: this.returnUrl });
   }
 
-  ngOnInit() {
-  }
+
 
 }

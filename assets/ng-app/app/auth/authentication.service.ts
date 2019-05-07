@@ -6,14 +6,23 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 // var jwt = require('jsonwebtoken');
 import jwt_decode from 'jwt-decode';
 import { environment } from 'ng-app/environments/environment';
+import { Subject } from 'rxjs';
 
 const URL:string = `${environment.apiUrl}`;
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
+  private _isAuthenticated = new Subject();
+  private _token:any;
 
+  get token(){return this._token;}
+  set token(value:any) {this._token = value;}
+
+
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
+    this.token = localStorage.getItem('token');
+    console.log('token : ', this.token);
   }
 
   checkIn() {
@@ -23,7 +32,7 @@ export class AuthenticationService {
         console.log('got resp - ', resp);
         // login successful if there's a jwt token in the response
         if (resp && resp.token) {
-          console.log('got checkin - ', resp.user);
+          console.log(`got checkin - ${resp.user}`, resp);
         }
 
         return resp;
@@ -31,12 +40,15 @@ export class AuthenticationService {
   }
 
   isAuthenticated() {
-    const token = localStorage.getItem('token');
     // console.log('token : ',token);
-    if (!token) return false;
+    if (!this.token) {
+      this._isAuthenticated.next(false);
+      return false;
+    }
     // console.log('decoded : ',jwt_decode(token));
     // Check whether the token is expired and return
     // true or false
+    this._isAuthenticated.next(true);
     return true;
     // return !this.jwtHelper.isTokenExpired(token);
   }
@@ -49,6 +61,8 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (resp && resp.token && resp.user) {
           console.log('got user - ', resp.user);
+          console.log('got token - ', resp.token);
+          this.token = resp.token;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('token', JSON.stringify(resp.token));
           localStorage.setItem('currentUser', JSON.stringify(resp.user));
@@ -71,6 +85,7 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.removeItem('token');
           localStorage.removeItem('currentUser');
+          this.token = null;
         }
 
         return resp.user;

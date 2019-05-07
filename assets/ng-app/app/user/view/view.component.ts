@@ -14,12 +14,32 @@ export class ViewComponent implements OnInit {
   store: any = JSON.parse(localStorage.getItem('currentUser'));
   user: any;
   users;
+  navLinks: any[];
   returnUrl;
-  groupDefs = ['id','username','uid','createdAt','actions'];
+  groupDefs = ['id', 'username', 'uid', 'createdAt', 'actions'];
 
   constructor(private route: ActivatedRoute,
     private us: UserService,
-    private auth: AuthenticationService) { }
+    private auth: AuthenticationService) {
+    this.navLinks = [
+      {
+        label: 'Message',
+        link: './messages',
+        icon: 'chat',
+        index: 0
+      }, {
+        label: 'Map',
+        link: './map',
+        icon: 'map',
+        index: 1
+      }, {
+        label: 'Events',
+        link: './events',
+        icon: 'event',
+        index: 2
+      },
+    ];
+  }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -31,6 +51,12 @@ export class ViewComponent implements OnInit {
     }
 
     this.setUser();
+  }
+
+  getTabUrl(link) {
+    console.log('should be getting tab url.. WIP');
+    return '';
+    // return this.activeGroup ? link + '/' + this.activeGroup.uid : link;
   }
 
   setUser() {
