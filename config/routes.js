@@ -29,6 +29,10 @@ module.exports.routes = {
     skipAssets:true
   },
 
+  'GET /api/v1/user': 'user/find',
+  'GET /api/v1/group': 'group/find',
+  'GET /api/v1/event': 'event/find',
+
   /***************************************************************************
    *                                                                          *
    * More custom routes here...                                               *
@@ -54,38 +58,38 @@ module.exports.routes = {
   // 'get /register': {
   // 	view: 'user/register'
   // },
-  'post /login': 'AuthController.login',
-  'post /register': 'AuthController.register',
-  'get /check-in': 'AuthController.checkIn',
-  '/logout': 'AuthController.logout',
+  'post /api/v1/login': 'AuthController.login',
+  'post /api/v1/register': 'AuthController.register',
+  'get /api/v1/check-in': 'AuthController.checkIn',
+  '/api/v1/logout': 'AuthController.logout',
 
-  'get /view': 'UserController.view',
-  'get /user/:uid': 'UserController.detail',
-  'post /user/:uid': 'UserController.update',
-  'get /user/:uid/groups': 'UserController.groups',
-  'get /user/:uid/events': 'UserController.events',
-  'get /user/:uid/users': 'UserController.users',
+  'get /api/v1/view': 'UserController.view',
+  'get /api/v1/user/:uid': 'UserController.detail',
+  'post /api/v1/user/:uid': 'UserController.update',
+  'get /api/v1/user/:uid/groups': 'UserController.groups',
+  'get /api/v1/user/:uid/events': 'UserController.events',
+  'get /api/v1/user/:uid/users': 'UserController.users',
 
-  'get /group': 'GroupController.index',// protect as master
-  'post /group': 'GroupController.create',
-  'delete /group': 'GroupController.destroy',
-  'get /group/:uid': 'GroupController.view',
-  'get /group/:uid/users': 'GroupController.users',
-  'post /group/:uid': 'GroupController.update',
+  'get /api/v1/group': 'GroupController.index',// protect as master
+  'post /api/v1/group': 'GroupController.create',
+  'delete /api/v1/group': 'GroupController.destroy',
+  'get /api/v1/group/:uid': 'GroupController.view',
+  'get /api/v1/group/:uid/users': 'GroupController.users',
+  'post /api/v1/group/:uid': 'GroupController.update',
 
-  'get /group/:id/messages': 'MessageController.index',
-  'post /group/:uid/message': 'MessageController.create',
-  'post /message': 'MessageController.create',
-  'delete /group/:uid/message/:uid': 'MessageController.destroy',
-  'delete /message/:uid': 'MessageController.destroy',
-  'get /message/:uid': 'MessageController.detail',// protect as master
+  'get /api/v1/group/:id/messages': 'MessageController.index',
+  'post /api/v1/group/:uid/message': 'MessageController.create',
+  'post /api/v1/message': 'MessageController.create',
+  'delete /api/v1/group/:uid/message/:uid': 'MessageController.destroy',
+  'delete /api/v1/message/:uid': 'MessageController.destroy',
+  'get /api/v1/message/:uid': 'MessageController.detail',// protect as master
 
 
-  'get /event': 'EventController.index',// protect as master
-  'post /event': 'EventController.create',
-  'delete /event': 'EventController.destroy',
-  'get /event/:uid': 'EventController.view',
-  'post /event/:uid': 'EventController.update',
+  'get /api/v1/event': 'EventController.index',// protect as master
+  'post /api/v1/event': 'EventController.create',
+  'delete /api/v1/event': 'EventController.destroy',
+  'get /api/v1/event/:uid': 'EventController.view',
+  'post /api/v1/event/:uid': 'EventController.update',
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
