@@ -1,3 +1,16 @@
-<p>
-  group-view works!
-</p>
+
+<nav mat-tab-nav-bar mat-stretch-tabs>
+
+  <a mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="link.link"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    <mat-icon>{{link.icon}}</mat-icon>
+    {{link.label}}
+  </a>
+
+</nav>
+
+
+<router-outlet></router-outlet>

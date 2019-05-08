@@ -2,21 +2,18 @@ user view page
 
 <mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile>Hi User!</mat-grid-tile>
+
+  <mat-grid-tile
+    *ngFor="let group of groups"
+    [routerLink]="'/group/'+group.uid">
+    <h4>{{group.name}}</h4>
+    <!-- <p></p> -->
+  </mat-grid-tile>
+
   <mat-grid-tile>Create New Group!</mat-grid-tile>
 </mat-grid-list>
 
-<!-- <nav mat-tab-nav-bar mat-stretch-tabs>
 
-  <a mat-tab-link
-    *ngFor="let link of navLinks"
-    [routerLink]="getTabUrl(link.link)"
-    routerLinkActive #rla="routerLinkActive"
-    [active]="rla.isActive">
-    <mat-icon>{{link.icon}}</mat-icon>
-    {{link.label}}
-  </a>
-
-</nav> -->
 <!--
 <mat-tab-group [dynamicHeight]="true" id="user-tabs">
 

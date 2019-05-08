@@ -23,7 +23,13 @@ export class HeaderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.isAuthenticated = this.auth.isAuthenticated();
+    this.isAuthenticated = this.auth.hasToken();
+
+    if (this.isAuthenticated){
+      this.auth.checkIn().subscribe(()=>{
+
+      });
+    }
   }
 
   menuHandler(event: MouseEvent) {

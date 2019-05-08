@@ -11,8 +11,6 @@ import { group } from '@angular/animations';
 })
 export class AppComponent implements OnInit {
   title = 'ng-v6';
-  navLinks: any[];
-  activeLinkIndex = -1;
   activeGroup: any;
   private _currentUser:any;
   get currentUser() {return this._currentUser}
@@ -20,33 +18,10 @@ export class AppComponent implements OnInit {
   constructor(
     private sails: SailsClient,
     private router: Router) {
-
-    this.navLinks = [
-      {
-        label: 'Message',
-        link: './messages',
-        icon: 'chat',
-        index: 0
-      }, {
-        label: 'Map',
-        link: './map',
-        icon: 'map',
-        index: 1
-      }, {
-        label: 'Events',
-        link: './events',
-        icon: 'event',
-        index: 2
-      },
-    ];
   }
 
   ngOnInit() {
     console.log('sails - ', this.sails);
-
-    this.router.events.subscribe((res) => {
-      this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
-    });
 
     this.sails.on('user').subscribe(res => {
       console.log('WB-user:', res);

@@ -7,20 +7,24 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import jwt_decode from 'jwt-decode';
 import { environment } from 'ng-app/environments/environment';
 import { Subject } from 'rxjs';
+import { UserCurrentService } from '../user/user-current.service';
 
-const URL:string = `${environment.apiUrl}`;
+const URL: string = `${environment.apiUrl}`;
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
   private _isAuthenticated = new Subject();
-  private _token:any;
+  private _token: any;
 
-  get token(){return this._token;}
-  set token(value:any) {this._token = value;}
+  get token() { return this._token; }
+  set token(value: any) { this._token = value; }
 
 
-  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
+  constructor(
+    private http: HttpClient,
+    private _us:UserCurrentService,
+    public jwtHelper: JwtHelperService) {
     this.token = localStorage.getItem('token');
     console.log('token : ', this.token);
   }
@@ -37,6 +41,10 @@ export class AuthenticationService {
 
         return resp;
       }));
+  }
+
+  hasToken() {
+    return this.token ? true : false;
   }
 
   isAuthenticated() {
@@ -65,7 +73,7 @@ export class AuthenticationService {
           this.token = resp.token;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('token', JSON.stringify(resp.token));
-          localStorage.setItem('currentUser', JSON.stringify(resp.user));
+          this._us.currentUser = resp.user;
         }
 
         return resp.user;
@@ -84,7 +92,7 @@ export class AuthenticationService {
         if (resp && resp.logout) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.removeItem('token');
-          localStorage.removeItem('currentUser');
+          this._us.currentUser = null;
           this.token = null;
         }
 

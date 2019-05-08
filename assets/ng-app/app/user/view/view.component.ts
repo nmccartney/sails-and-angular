@@ -3,6 +3,8 @@ import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'ng-app/app/auth/authentication.service';
+import { GroupService } from 'ng-app/app/group/group.service';
+import { UserCurrentService } from '../user-current.service';
 
 @Component({
   selector: 'app-view',
@@ -13,77 +15,41 @@ export class ViewComponent implements OnInit {
 
   store: any = JSON.parse(localStorage.getItem('currentUser'));
   user: any;
+  currUser: any;
   users;
-  navLinks: any[];
+  groups;
   returnUrl;
   groupDefs = ['id', 'username', 'uid', 'createdAt', 'actions'];
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
+    private _gs: GroupService,
     private us: UserService,
+    private currUserService:UserCurrentService,
     private auth: AuthenticationService) {
-    this.navLinks = [
-      {
-        label: 'Message',
-        link: './messages',
-        icon: 'chat',
-        index: 0
-      }, {
-        label: 'Map',
-        link: './map',
-        icon: 'map',
-        index: 1
-      }, {
-        label: 'Events',
-        link: './events',
-        icon: 'event',
-        index: 2
-      },
-    ];
+
+    this.currUser = this.currUserService.currentUser;
+    this.currUserService.userChanges.subscribe((user)=>{
+        console.log('sub user ',user);
+        this.currUser = user;
+    });
   }
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-    this.setUsers();
-
-    if (!this.store) {
-      return;
-    }
-
-    this.setUser();
+    this.getGroups();
   }
 
-  getTabUrl(link) {
-    console.log('should be getting tab url.. WIP');
-    return '';
-    // return this.activeGroup ? link + '/' + this.activeGroup.uid : link;
+  getGroups() {
+    this._gs.userGroups({ uid: this.currUser.uid || '?' })
+      .subscribe((groups) => {
+        this.groups = groups;
+      })
   }
 
-  setUser() {
-    this.us.findOne(this.store.uid)
-      .pipe(first())
-      .subscribe(
-        data => {
-          // console.log('get user success : ', data);
-          this.user = data.user;
-          //TODO: goto login screen
-        },
-        error => {
-          console.log('viewing user failed : ', error);
-        });
-  }
+  gotoGroup(group){
 
-  setUsers() {
-    this.us.find()
-      .subscribe(
-        data => {
-          // console.log('get users success : ', data);
-          this.users = data;
-          //TODO: goto login screen
-        },
-        error => {
-          console.log('viewing user failed : ', error);
-        });
   }
 
 }

@@ -26,9 +26,7 @@ module.exports = {
     data = {
       username: req.body.username,
       password: req.body.password
-    }
-
-    // console.log('********* ', JSON.stringify(req.body));
+    };
 
     User.create(data).fetch().exec(function (err, user) {
       if (err) {
