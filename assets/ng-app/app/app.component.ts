@@ -3,6 +3,7 @@ import { SailsClient } from 'ngx-sails';
 import { MatSidenav } from '@angular/material';
 import { Router } from '@angular/router';
 import { group } from '@angular/animations';
+import { UserCurrentService } from './user/user-current.service';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +17,20 @@ export class AppComponent implements OnInit {
   get currentUser() {return this._currentUser}
 
   constructor(
+    private currUserService: UserCurrentService,
     private sails: SailsClient,
     private router: Router) {
   }
 
   ngOnInit() {
     console.log('sails - ', this.sails);
+
+    this._currentUser = this.currUserService.currentUser;
+    console.log('current user - ', this.currentUser);
+    this.currUserService.userChanges.subscribe((user) => {
+      console.log('current user updated - ', user);
+      this._currentUser = this.currUserService.currentUser;
+    })
 
     this.sails.on('user').subscribe(res => {
       console.log('WB-user:', res);
@@ -57,6 +66,6 @@ export class AppComponent implements OnInit {
     console.log(event);
     this.activeGroup = event.group;
     this.sidenav.toggle();
-    this.router.navigate(['/map', event.group.uid]);
+    this.router.navigate(['/group', event.group.uid]);
   }
 }
