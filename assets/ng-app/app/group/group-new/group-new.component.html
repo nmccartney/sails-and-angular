@@ -1,0 +1,44 @@
+<div style="margin:20px;">
+  <div >
+    <div class="one" style="padding-right:15px;">
+      <form [formGroup]="groupForm" novalidate>
+
+        <mat-form-field class="ff-full-width">
+          <input formControlName="name" autocomplete="off" required matInput cdkFocusInitial placeholder="Group Name">
+        </mat-form-field>
+
+        <mat-form-field class="ff-full-width">
+          <input matInput formControlName="owner" placeholder="Owner ID">
+        </mat-form-field>
+
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!groupForm?.valid" (click)="onSubmit()">
+          Apply
+        </button>
+
+      </form>
+    </div>
+    <!-- column two -->
+    <div class="two">
+
+      <mat-form-field class="ff-full-width">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let user of users" [selectable]="true" [removable]="true" (removed)="remove(user)">
+            {{user.username}}
+            <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="New User..." #userInput [formControl]="userCtrl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="false">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+            {{user.username}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+</div>

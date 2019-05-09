@@ -64,8 +64,9 @@ export class AppComponent implements OnInit {
 
   onGroupSelected(event: { group: any, event: any }) {
     console.log(event);
-    this.activeGroup = event.group;
     this.sidenav.toggle();
+    if(!event.group)return;
+    this.activeGroup = event.group;
     this.router.navigate(['/group', event.group.uid]);
   }
 }

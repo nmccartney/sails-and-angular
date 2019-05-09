@@ -4,8 +4,14 @@ import { GroupViewComponent } from "./group-view/group-view.component";
 import { MapViewComponent } from "../map/map-view/map-view.component";
 import { EventViewComponent } from "../event/event-view/event-view.component";
 import { ChatViewComponent } from "../message/chat-view/chat-view.component";
+import { GroupNewComponent } from "./group-new/group-new.component";
 
 export const groupRoutes: Routes = [
+  {
+    path: 'group/new',
+    component: GroupNewComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'group/:uid',
     component: GroupViewComponent,
@@ -30,6 +36,7 @@ export const groupRoutes: Routes = [
       },
     ]
   },
+
   // lazy load
   // {
   //   path: 'customers',

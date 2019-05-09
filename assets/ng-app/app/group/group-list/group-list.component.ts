@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { GroupService } from '../group.service';
 import { UserService } from 'ng-app/app/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-group-list',
@@ -21,6 +22,7 @@ export class GroupListComponent implements OnInit {
   @Output() groupSelected: EventEmitter<any> = new EventEmitter();
 
   constructor(private _gs: GroupService,
+    private router: Router,
     private _us: UserService) { }
 
   ngOnInit() {
@@ -41,6 +43,14 @@ export class GroupListComponent implements OnInit {
         console.log('groups - ', groups);
         this.groups = groups;
       })
+  }
+
+  addGroupHandler($event){
+    this.router.navigate(['/group/new']);
+    this.groupSelected.emit({
+      group: null,
+      event: event
+    });
   }
 
   clickHander(group: any, event: any) {

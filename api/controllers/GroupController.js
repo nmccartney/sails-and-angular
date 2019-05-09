@@ -20,19 +20,38 @@ module.exports = {
 
   create: (req, res) => {
 
-    data = {
-      name: req.body.name,
-      owner: req.body.owner
+    users = convertUserObjectToId(req.body.users);
+
+    if (!req.body && !req.body.name && !req.body.owner) {
+      err = {
+        error: 'Bad Request. Must provide name & owner.',
+        message: "Error: 500 Internal Server Error. Must provide name & owner.",
+        name: "HttpErrorResponse",
+        ok: false,
+        status: 500,
+        statusText: "Internal Server Error",
+        url: "http://localhost:1337/api/v1/group"
+      }
+      return res.badRequest(err);
     }
 
-    Group.create(data).fetch().exec((err, group) => {
-      if (err) {
-        sails.log.info('[GroupCreate Error] : ', JSON.stringify(err));
-        return res.badRequest(err);
-      }
+    data = {
+      name: req.body.name,
+      owner: req.body.owner,
+      users: req.body.owner ? [...users, req.body.owner] : [...users]
+    };
+    sails.log.info('[GroupCreate] : ', JSON.stringify(req.body));
 
-      return res.ok(group);
-    });
+    Group
+      .create(data)
+      .fetch().exec((err, group) => {
+        if (err) {
+          sails.log.info('[GroupCreate Error] : ', JSON.stringify(err));
+          return res.badRequest(err);
+        }
+
+        return res.ok(group);
+      });
   },
 
   update: (req, res) => {
@@ -43,7 +62,7 @@ module.exports = {
 
     newData = {
       name: req.body.name,
-      owner: req.body.owner,
+      owner: req.body.owner || null,
       users: convertUserObjectToId(req.body.users) || []
     };
 
@@ -133,7 +152,8 @@ module.exports = {
 
 
 function convertUserObjectToId(users) {
-  newUsers = []
+  newUsers = [];
+  if (!users) return [];
   for (var i = 0; i < users.length; i++) {
     newUsers.push(users[i].id);
   }

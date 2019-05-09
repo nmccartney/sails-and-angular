@@ -30,10 +30,10 @@ export class MapViewComponent implements OnInit {
 
   ngOnInit() {
 
-    this._route.params.subscribe((params)=>{
+    this._route.parent.params.subscribe((params)=>{
       // this._groupUID = +params.get('group_uid');
-      this.group['uid'] = params['group_uid'];
-      console.log('uid', params);
+      this.group['uid'] = params['uid'];
+      console.log('map view params', params);
       this._cd.markForCheck();
     });
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'ng-app/app/auth/authentication.service';
 import { GroupService } from 'ng-app/app/group/group.service';
 import { UserCurrentService } from '../user-current.service';
@@ -25,6 +25,7 @@ export class ViewComponent implements OnInit {
     private route: ActivatedRoute,
     private _gs: GroupService,
     private us: UserService,
+    private router: Router,
     private currUserService:UserCurrentService,
     private auth: AuthenticationService) {
 
@@ -50,6 +51,10 @@ export class ViewComponent implements OnInit {
 
   gotoGroup(group){
 
+  }
+
+  addGroupHandler($event){
+    this.router.navigate(['/group/new']);
   }
 
 }
