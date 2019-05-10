@@ -1,21 +1,21 @@
-:host {
+.app-map-view {
   display: block;
 }
 
 agm-map {
-  // display: block;
+  display: block;
   height: 100%;
   width:100%;
 }
 
 .map-view-wrapper{
-  position: absolute;
+  // position: absolute;
   display: block;
   // position: relative;
-  top: calc(64px + 48px);
-  left: 0;
-  height: calc(100% - calc(64px + 48px));
-  width:100%;
+  // top: calc(64px + 48px);
+  // left: 0;
+  // height: calc(100% - calc(64px + 48px));
+  // width:100%;
 }
 
 .map-view{

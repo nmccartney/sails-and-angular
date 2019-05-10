@@ -23,6 +23,7 @@ import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 import { GroupModule } from './group/group.module';
 import { MapModule } from './map/map.module';
 import { environment } from 'ng-app/environments/environment';
+import { WindowRefService } from './window-ref.service';
 
 
 const socketConfig: ISailsClientConfig = { uri: environment.apiUrl || null };
@@ -74,6 +75,7 @@ export function getLocalToken(): any {
     UserModule,
   ],
   providers: [
+    WindowRefService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

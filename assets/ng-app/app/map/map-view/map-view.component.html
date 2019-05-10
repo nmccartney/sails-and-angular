@@ -11,11 +11,15 @@
               <div> zoom:{{currZoom}}</div>
             </div>
 
-            <agm-map [latitude]="latitude" [zoom]="zoom" [longitude]="longitude"
+            <agm-map
+                [latitude]="latitude"
+                [zoom]="zoom"
+                [longitude]="longitude"
                 (mapReady)="onMapReady($event)"
                 (boundsChange)="onBoundsChange($event)"
                 (centerChange)="onCenterChange($event)"
-                (zoomChange)="onZoomChange($event)">
+                (zoomChange)="onZoomChange($event)"
+                [ngStyle]="{'width': mapSize.width + 'px', 'height': mapSize.height + 'px'}">
               <!-- <agm-marker [latitude]="latitude" [longitude]="latitude"></agm-marker> -->
             </agm-map>
 
