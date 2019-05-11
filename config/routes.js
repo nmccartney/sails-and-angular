@@ -7,6 +7,8 @@
  * For more information on configuring custom routes, check out:
  * https://sailsjs.com/anatomy/config/routes-js
  */
+const API_V1 = '/api/v1';
+
 
 module.exports.routes = {
 
@@ -70,6 +72,8 @@ module.exports.routes = {
   'get /api/v1/user/:uid/events': 'UserController.events',
   'get /api/v1/user/:uid/users': 'UserController.users',
   'delete /api/v1/user': 'UserController.destroy',
+  'post /api/v1/user/:uid/invite': 'UserInviteController.create',
+  'post /api/v1/user/invite/:uid': 'UserInviteController.update',
 
 
   'get /api/v1/group': 'GroupController.index',// protect as master
