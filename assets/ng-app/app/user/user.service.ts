@@ -20,6 +20,17 @@ export class UserService {
       }));
   }
 
+  delete(params) {
+    let options: any = {
+      body: params
+    }
+    return this.http.delete<any>(`${URL}/user/`, options)
+      .pipe(map((resp: any) => {
+        console.log('deleted user - ', resp);
+        return resp;
+      }));
+  }
+
   findMe(){
     const user = localStorage.getItem('currentUser');
     if(!user)return false;

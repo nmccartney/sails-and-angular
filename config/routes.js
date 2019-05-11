@@ -69,6 +69,8 @@ module.exports.routes = {
   'get /api/v1/user/:uid/groups': 'UserController.groups',
   'get /api/v1/user/:uid/events': 'UserController.events',
   'get /api/v1/user/:uid/users': 'UserController.users',
+  'delete /api/v1/user': 'UserController.destroy',
+
 
   'get /api/v1/group': 'GroupController.index',// protect as master
   'post /api/v1/group': 'GroupController.create',

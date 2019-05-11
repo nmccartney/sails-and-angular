@@ -54,6 +54,25 @@ module.exports = {
       });
   },
 
+  destroy: (req, res) => {
+
+    sails.log.info('[UserDestroy trying] : ', JSON.stringify(req.body));
+
+    data = {
+      uid: req.body.uid || ''
+    };
+
+    User.destroy(data).fetch().exec((err, group) => {
+      sails.log.info('[UserDestroy anything] : ', JSON.stringify(group));
+      if (err) {
+        sails.log.info('[UserDestroy Error] : ', JSON.stringify(err));
+        return res.badRequest(err);
+      }
+
+      return res.ok(group);
+    });
+  },
+
   edit: (req, res) => {
     var data = req.body;
     if (!data || !data.username || !data.uid) {

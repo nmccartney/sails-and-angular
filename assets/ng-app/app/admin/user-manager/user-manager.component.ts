@@ -59,15 +59,15 @@ export class UserManagerComponent implements OnInit {
     const data = {
       uid: params.uid
     }
-    this.bar.open('not available at this time', 'info', { duration: 3000 });
 
     //   console.log(params, data);
-    //   this.us.delete(data).subscribe(
-    //     data => {
-    //       this.setUsers();
-    //     }, err => {
-    //       console.log('edit delete failed!');
-    //     });
+    this.us.delete(data).subscribe(
+      data => {
+        this.setUsers();
+        this.bar.open('User deleted', 'info', { duration: 3000 });
+      }, err => {
+        console.log('user delete failed!');
+      });
   }
 
 }
