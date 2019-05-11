@@ -24,6 +24,7 @@ import { GroupModule } from './group/group.module';
 import { MapModule } from './map/map.module';
 import { environment } from 'ng-app/environments/environment';
 import { WindowRefService } from './window-ref.service';
+import { AppCoreModule } from './app-core/app-core.module';
 
 
 const socketConfig: ISailsClientConfig = { uri: environment.apiUrl || null };
@@ -44,6 +45,7 @@ export function getLocalToken(): any {
       apiKey: 'AIzaSyCQ1pGRsiGLQP2rJavFC-jKVh0uaHf1uws',
       libraries: ["places"]
     }),
+    AppCoreModule,
     BrowserAnimationsModule,
     BrowserModule,
     MaterialModule,
