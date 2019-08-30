@@ -100,7 +100,7 @@
     "sails:debug": "node --inspect app.js",
     "sails:start": "NODE_ENV=production node app.js",
     "sails:test": "npm run sails:lint && echo 'Done.'",
-    "sails:lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "sails:lint": "eslint .  --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "sails:custom-tests": "echo \"(No other custom tests yet.)\" && echo"
   },
   "main": "app.js",

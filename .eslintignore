@@ -1,3 +1,5 @@
 assets/dependencies/**/*.js
+assets/ng-dist/**/*
+assets/ng-app/**/*
 views/**/*.ejs
 
