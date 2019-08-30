@@ -32,9 +32,9 @@ module.exports = {
       // 'shhh'
       sails.config.jwtSettings.secret
       // , {
-        // algorithm: sails.config.jwtSettings.algorithm,
-        // issuer: sails.config.jwtSettings.issuer,
-        // audience: sails.config.jwtSettings.audience
+      // algorithm: sails.config.jwtSettings.algorithm,
+      // issuer: sails.config.jwtSettings.issuer,
+      // audience: sails.config.jwtSettings.audience
       // }
     );
   }

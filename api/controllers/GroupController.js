@@ -15,7 +15,7 @@ module.exports = {
       }
 
       return res.ok(groups);
-    })
+    });
   },
 
   create: (req, res) => {
@@ -25,13 +25,13 @@ module.exports = {
     if (!req.body && !req.body.name && !req.body.owner) {
       err = {
         error: 'Bad Request. Must provide name & owner.',
-        message: "Error: 500 Internal Server Error. Must provide name & owner.",
-        name: "HttpErrorResponse",
+        message: 'Error: 500 Internal Server Error. Must provide name & owner.',
+        name: 'HttpErrorResponse',
         ok: false,
         status: 500,
-        statusText: "Internal Server Error",
-        url: "http://localhost:1337/api/v1/group"
-      }
+        statusText: 'Internal Server Error',
+        url: 'http://localhost:1337/api/v1/group'
+      };
       return res.badRequest(err);
     }
 
@@ -67,8 +67,8 @@ module.exports = {
     };
 
     Group.update({
-        uid: req.body.uid
-      }, newData).fetch()
+      uid: req.body.uid
+    }, newData).fetch()
       .exec((err, group) => {
         if (err || group.length == 0) {
           sails.log.info('[GroupEdit Error] : ', JSON.stringify(err));
@@ -85,7 +85,7 @@ module.exports = {
 
     data = {
       uid: req.body.uid || ''
-    }
+    };
 
     Group.destroy(data).fetch().exec((err, group) => {
       sails.log.info('[GroupDestroy anything] : ', JSON.stringify(group));
@@ -104,7 +104,7 @@ module.exports = {
     }
     let data = {
       uid: req.params.uid
-    }
+    };
     Group
       .findOne(data)
       .populate('owner')
@@ -126,7 +126,7 @@ module.exports = {
     }
     data = {
       uid: req.params.uid,
-    }
+    };
 
     sails.log.
     info('[GroupUsers params] : ', JSON.stringify(req.params));
@@ -153,7 +153,7 @@ module.exports = {
 
 function convertUserObjectToId(users) {
   newUsers = [];
-  if (!users) return [];
+  if (!users) {return [];}
   for (var i = 0; i < users.length; i++) {
     newUsers.push(users[i].id);
   }

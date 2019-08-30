@@ -34,14 +34,14 @@ passport.use(new LocalStrategy(LOCAL_STRATEGY_CONFIG,
     User.findOne({
       username: username
     }, function (err, user) {
-      if (err) return cb(err);
-      if (!user) return cb(null, false, {
+      if (err) {return cb(err);}
+      if (!user) {return cb(null, false, {
         message: 'Username not found'
-      });
+      });}
       bcrypt.compare(password, user.password, function (err, res) {
-        if (!res) return cb(null, false, {
+        if (!res) {return cb(null, false, {
           message: 'Invalid Password'
-        });
+        });}
         sails.log.info('User Login Successful uid: ', user.uid);
         return cb(null, user, {
           message: 'Login Successful'
@@ -52,10 +52,10 @@ passport.use(new LocalStrategy(LOCAL_STRATEGY_CONFIG,
 
 
 var EXPIRES_IN_MINUTES = 60 * 24;
-var SECRET = process.env.tokenSecret || "n8Mc0uIVnB3iI1yxj646fVXSE3ZVk4doZgz6fTbNg7jO41EAtl20J5F7Trtwe7OM";
-var ALGORITHM = "HS256";
-var ISSUER = "localhost:1337";
-var AUDIENCE = "localhost:1337";
+var SECRET = process.env.tokenSecret || 'n8Mc0uIVnB3iI1yxj646fVXSE3ZVk4doZgz6fTbNg7jO41EAtl20J5F7Trtwe7OM';
+var ALGORITHM = 'HS256';
+var ISSUER = 'localhost:1337';
+var AUDIENCE = 'localhost:1337';
 
 
 
@@ -105,7 +105,7 @@ function _onJwtStrategyAuth(payload, next) {
 
 // const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-var opts = {}
+var opts = {};
 // opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = SECRET;
 // opts.issuer = ISSUER;
@@ -116,7 +116,7 @@ opts.jwtFromRequest = (req) => {
   // console.log(jwt.verify(token,SECRET));
   // sails.log.info('passport getting jwt form req : \n', token);
   return  token || null;
-}
+};
 opts.passReqToCallback = false;
 
 passport.use(new JwtStrategy(opts, (jwt_payload, done) => {

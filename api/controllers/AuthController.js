@@ -36,7 +36,7 @@ module.exports = {
 
       //TODO: Maybe send confirmation email to the user before login
       req.login(user, function (err) {
-        if (err) return res.negotiate(err);
+        if (err) {return res.negotiate(err);}
         sails.log.info('User ' + user.id + ' has logged in.');
         // return res.redirect('/');
         return res.ok({
@@ -44,8 +44,8 @@ module.exports = {
           token: CipherService.createToken(user),
           user: user
         });
-      })
-    })
+      });
+    });
   },
 
   checkIn:function(req,res){
@@ -66,8 +66,8 @@ module.exports = {
  */
 function _onPassportAuth(req, res, error, user, info) {
 
-  if (error) return res.serverError(error);
-  if (!user) return res.unauthorized(null, info && info.code, info && info.message);
+  if (error) {return res.serverError(error);}
+  if (!user) {return res.unauthorized(null, info && info.code, info && info.message);}
 
   user = _.omit(user,['password']);
 
@@ -78,10 +78,10 @@ function _onPassportAuth(req, res, error, user, info) {
     // sails.log.info('auth.login auth ? ', req.isAuthenticated());
     // sails.log.info('auth.login out going token : ', token);
 
-    if ((err) || (!user)) return res.send({
+    if ((err) || (!user)) {return res.send({
       message: info.message,
       user
-    });
+    });}
 
     return res.ok({
       // TODO: replace with new type of cipher service

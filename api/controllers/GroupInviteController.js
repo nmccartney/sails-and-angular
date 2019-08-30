@@ -53,8 +53,8 @@ module.exports = {
     };
 
     GroupInvite.update({
-        uid: req.body.uid
-      }, newData)
+      uid: req.body.uid
+    }, newData)
       .fetch()
       .exec((err, invite) => {
         if (err || invite.length == 0) {
@@ -77,8 +77,8 @@ module.exports = {
     };
 
     GroupInvite.update({
-        uid: req.body.uid
-      }, newData)
+      uid: req.body.uid
+    }, newData)
       .fetch()
       .exec((err, invite) => {
         if (err || invite.length == 0) {

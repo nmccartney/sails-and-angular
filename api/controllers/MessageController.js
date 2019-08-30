@@ -22,8 +22,8 @@ module.exports = {
     }
 
     Message.find({
-        group: req.params.id
-      })
+      group: req.params.id
+    })
       .populate('author')
       .exec((err, message) => {
         if (err) {
@@ -46,7 +46,7 @@ module.exports = {
       type: req.body.type,
       author: req.body.author,
       group: req.body.group,
-    }
+    };
 
     Message
       .create(newData)
@@ -58,7 +58,7 @@ module.exports = {
         }
         Group.publish([newData.group], message);
         sails.sockets
-          .broadcast(Group.getRoomName(newData.group), "message", message);
+          .broadcast(Group.getRoomName(newData.group), 'message', message);
         sails.log.info(Group.getRoomName(newData.group));
         return res.ok(message);
       });

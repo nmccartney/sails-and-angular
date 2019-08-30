@@ -95,10 +95,11 @@
     "clean": "rimraf assets/ng-dist",
     "prod": "NODE_ENV=production sails lift",
     "dev": "NODE_ENV=development sails lift",
+    "test": "npm-run-all --parallel sails:test ng:test",
     "debug": "npm-run-all --parallel sails:debug open:client",
     "sails:debug": "node --inspect app.js",
     "sails:start": "NODE_ENV=production node app.js",
-    "sails:test": "npm run lint && npm run custom-tests && echo 'Done.'",
+    "sails:test": "npm run sails:lint && echo 'Done.'",
     "sails:lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "sails:custom-tests": "echo \"(No other custom tests yet.)\" && echo"
   },

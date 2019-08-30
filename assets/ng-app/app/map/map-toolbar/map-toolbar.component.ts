@@ -9,7 +9,9 @@ export class MapToolbarComponent implements OnInit {
 
   menuOpen:boolean = false;
 
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit() {
   }
@@ -19,3 +21,4 @@ export class MapToolbarComponent implements OnInit {
   }
 
 }
+

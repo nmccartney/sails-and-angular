@@ -53,20 +53,20 @@ function _onPassportAuth2(req, res, error, user, info) {
   sails.log.info('authenticate req:user - ', req.user);
   sails.log.info('authenticate info - ', info);
   sails.log.info('authenticate user - ', user);
-  if (error) return res.serverError(error);
-  if (!user) return res.unauthorized(null, info && info.code, info && info.message);
+  if (error) {return res.serverError(error);}
+  if (!user) {return res.unauthorized(null, info && info.code, info && info.message);}
 
   req.login(user, function (err) {
     sails.log.info('authenticate user - ', user.username);
     sails.log.info('authenticate pass - ', user.password);
     sails.log.info('authenticate auth ? ', req.isAuthenticated());
     // sails.log.info('authenticate token : ', token);
-    if (err) res.send(err);
+    if (err) {res.send(err);}
 
-    if ((err) || (!user)) return res.send({
+    if ((err) || (!user)) {return res.send({
       message: info.message,
       user
-    });
+    });}
 
     return next();
   });

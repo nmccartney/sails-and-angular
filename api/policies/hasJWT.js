@@ -10,9 +10,9 @@ module.exports = function (req, res, next) {
     // sails.log.info('passport jwt auth - user: ', user);
     // sails.log.info('passport jwt error : ', error);
     // sails.log.info('passport jwt info : ', info.username + ': \n' + info.message);
-    if (error) return res.serverError(error);
+    if (error) {return res.serverError(error);}
     if (!user)
-      return res.unauthorized(null, info && info.code, info);
+    {return res.unauthorized(null, info && info.code, info);}
     req.user = user;
 
     next();

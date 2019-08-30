@@ -19,11 +19,11 @@ module.exports = {
 
     data = {
       uid: req.user.uid,
-    }
+    };
 
     User.findOne(data, function (err, user) {
 
-      if (err) return res.basRequest(err);
+      if (err) {return res.basRequest(err);}
 
       sails.log.info('User ' + user.id + ' is being viewed');
 
@@ -39,7 +39,7 @@ module.exports = {
 
     data = {
       uid: req.params.uid,
-    }
+    };
 
     User.findOne(data)
       .populate('groups')
@@ -89,8 +89,8 @@ module.exports = {
     }
 
     User.update({
-        uid: req.body.uid
-      }, newUser)
+      uid: req.body.uid
+    }, newUser)
       .fetch()
       .exec((err, user) => {
         if (err) {
@@ -107,7 +107,7 @@ module.exports = {
     }
     data = {
       uid: req.params.uid,
-    }
+    };
 
     sails.log.
       info('[UserGroups params] : ', JSON.stringify(req.params));
@@ -133,7 +133,7 @@ module.exports = {
   events: function (req, res) {
     data = {
       uid: req.params.uid,
-    }
+    };
 
     User.findOne(data)
       .populate('events')
@@ -153,7 +153,7 @@ module.exports = {
     }
     data = {
       uid: req.params.uid,
-    }
+    };
 
     sails.log.
       info('[UserUsers params] : ', JSON.stringify(req.params));

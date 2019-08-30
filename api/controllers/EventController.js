@@ -15,7 +15,7 @@ module.exports = {
       }
 
       return res.ok(events);
-    })
+    });
   },
 
   create: (req, res) => {
@@ -34,7 +34,7 @@ module.exports = {
       place_id: req.body.place_id || '',
       gps: req.body.gps || null,
       group: req.body.group || null,
-    }
+    };
 
     Event.create(newData).fetch().exec((err, event) => {
       if (err) {
@@ -61,11 +61,11 @@ module.exports = {
       place_id: req.body.place_id,
       gps: req.body.gps,
       group: req.body.group,
-    }
+    };
 
     Event.update({
-        uid: req.body.uid
-      }, newData).fetch()
+      uid: req.body.uid
+    }, newData).fetch()
       .exec((err, event) => {
         if (err || event.length == 0) {
           sails.log.info('[EventEdit Error] : ', JSON.stringify(err));
@@ -82,7 +82,7 @@ module.exports = {
 
     data = {
       uid: req.body.uid || ''
-    }
+    };
 
     Event.destroy(data).fetch().exec((err, event) => {
       sails.log.info('[EventDestroy anything] : ', JSON.stringify(event));
@@ -101,7 +101,7 @@ module.exports = {
     }
     let data = {
       uid: req.params.uid
-    }
+    };
     Event
       .findOne(data)
       .populate('addresses')
@@ -114,12 +114,12 @@ module.exports = {
         }
 
         return res.ok(event);
-      })
+      });
   }
 };
 
 function convertUserObjectToId(users) {
-  newUsers = []
+  newUsers = [];
   for (var i = 0; i < users.length; i++) {
     newUsers.push(users[i].id);
   }
