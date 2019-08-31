@@ -20,7 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatSnackBarModule,
   ],
-  declarations: [UserManagerComponent, UserEditDialogComponent],
+  declarations: [
+    UserManagerComponent,
+    UserEditDialogComponent
+  ],
   exports:[
     UserManagerComponent
   ],
