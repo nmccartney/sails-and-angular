@@ -7,16 +7,16 @@ module.exports = function (shipit) {
   shipit.initConfig({
     default: {
       workspace: '/tmp/groupes',
-      deployTo: '/opt/groupes',
+      deployTo: '/home/pi/Desktop/groupes',
       repositoryUrl: 'https://github.com/nmccartney/sails-and-angular',
       ignores: ['.git', 'node_modules'],
       rsync: ['--del'],
       keepReleases: 2,
-      key: '~/.ec2/gsg-keypair',
+      // key: '~/.ec2/gsg-keypair',
       shallowClone: true
     },
     staging: {
-      servers: 'root@138.197.74.131', //142.93.194.138',
+      servers: 'root@192.168.1.114', //142.93.194.138',
       branch: 'master',
     },
     prod: {
