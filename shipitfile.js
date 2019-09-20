@@ -6,7 +6,7 @@ module.exports = function (shipit) {
 
   shipit.initConfig({
     default: {
-      workspace: '/home/pi/Desktop/.tmp/groups',
+      workspace: '.tmp/groups',
       deployTo: '/home/pi/Desktop/groupes',
       repositoryUrl: 'https://github.com/nmccartney/sails-and-angular',
       ignores: ['.git', 'node_modules'],
