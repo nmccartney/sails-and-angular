@@ -16,7 +16,7 @@ module.exports = function (shipit) {
       shallowClone: true
     },
     staging: {
-      servers: 'root@192.168.1.114', //142.93.194.138',
+      servers: 'pi@192.168.1.114', //142.93.194.138',
       branch: 'master',
     },
     prod: {
