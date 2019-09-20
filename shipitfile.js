@@ -12,11 +12,11 @@ module.exports = function (shipit) {
       ignores: ['.git', 'node_modules'],
       rsync: ['--del'],
       keepReleases: 2,
-      key: '~/.ec2/gsg-keypair',
+      // key: '~/.ec2/gsg-keypair',
       shallowClone: true
     },
     staging: {
-      servers: 'root@138.197.74.131', //142.93.194.138',
+      servers: 'pi@192.168.1.114', //142.93.194.138',
       branch: 'master',
     },
     prod: {

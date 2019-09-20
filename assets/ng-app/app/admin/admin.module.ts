@@ -48,6 +48,7 @@ import { UserManagerModule } from './user-manager/user-manager.module';
   declarations: [
     AdminViewComponent,
   ],
+
   // providers: [
   //   {
   //     provide: DateAdapter,
