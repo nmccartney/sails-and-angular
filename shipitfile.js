@@ -12,7 +12,7 @@ module.exports = function (shipit) {
       ignores: ['.git', 'node_modules'],
       rsync: ['--del'],
       keepReleases: 2,
-      // key: '~/.ec2/gsg-keypair',
+      key: '~/.ssh/id_rsa.pub',
       shallowClone: true
     },
     staging: {
