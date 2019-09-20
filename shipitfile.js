@@ -30,11 +30,11 @@ module.exports = function (shipit) {
   // });
 
   shipit.task('install', function () {
-    return shipit.remote('cd ../opt/groupes/current; npm install');
+    return shipit.remote('cd /home/pi/Desktop/groupes/current; npm install');
   });
 
   shipit.task('start', function () {
-    return shipit.remote('cd ../opt/groupes/current; forever -o out.log -e err.log start app.js --prod');
+    return shipit.remote('cd /home/pi/Desktop/groupes/current; forever -o out.log -e err.log start app.js --prod');
   });
 
   shipit.task('list', function () {
@@ -46,11 +46,11 @@ module.exports = function (shipit) {
   });
 
   shipit.task('err:log', function () {
-    return shipit.remote('cd ../opt/groupes/current; tail err.log -f');
+    return shipit.remote('cd /home/pi/Desktop/groupes/current; tail err.log -f');
   });
 
   shipit.task('console:log', function () {
-    return shipit.remote('cd ../opt/groupes/current; tail out.log -f');
+    return shipit.remote('cd /home/pi/Desktop/groupes/current; tail out.log -f');
   });
 
   shipit.task('forever:restart', function () {
@@ -61,7 +61,7 @@ module.exports = function (shipit) {
 
     return shipit.remote(command).then(function () {
 
-      var newCmd = 'cd ../opt/groupes/current; forever -o out.log -e err.log start app.js --prod';
+      var newCmd = 'cd /home/pi/Desktop/groupes/current; forever -o out.log -e err.log start app.js --prod';
 
       return shipit.remote(newCmd)
         .then(function () {
@@ -89,7 +89,7 @@ module.exports = function (shipit) {
     return shipit.remote(command).then(function () {
 
       // return shipit.remote('cd ../opt/groupes/current; npm install');
-      var newCmd = 'cd ../opt/groupes/current; npm install';
+      var newCmd = 'cd /home/pi/Desktop/groupes/current; npm install';
 
       return shipit.remote(newCmd)
         .then(function () {
@@ -115,7 +115,7 @@ module.exports = function (shipit) {
   shipit.on('built', () => {
     shipit.log(require('chalk').green('Start Application'));
 
-    var newCmd = 'cd ../opt/groupes/current; forever -o out.log -e err.log start app.js --prod';
+    var newCmd = 'cd /home/pi/Desktop/groupes/current; forever -o out.log -e err.log start app.js --prod';
 
     return shipit.remote(newCmd)
       .then(function () {
@@ -130,7 +130,7 @@ module.exports = function (shipit) {
 
   //install forever
   shipit.task('forever', function () {
-    return shipit.remote('cd ../opt/groups/current && npm install -g forever');
+    return shipit.remote('cd /home/pi/Desktop/groupes/current && npm install -g forever');
   });
 
 
