@@ -103,7 +103,7 @@ module.exports = function (shipit) {
   shipit.on('installed', () => {
     shipit.log(require('chalk').green('Building application...'));
 
-    var buildCmd = 'cd ../opt/groupes/current; npm run build:prod';
+    var buildCmd = 'cd /home/pi/Desktop/groupes/current; npm run build:prod';
 
     return shipit.remote(buildCmd)
       .then(function () {
