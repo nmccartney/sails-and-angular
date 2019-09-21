@@ -53,6 +53,15 @@ module.exports = function (shipit) {
     return shipit.remote('cd /home/pi/Desktop/groupes/current; tail out.log -f');
   });
 
+  // fix permission issues b4 cleaning
+  shipit.on('published', async () => {
+    // shipit.log(chalk.green('Changing directory permissions.'))
+    shipit.log(require('chalk').green('Changing directory permissions.'));
+    await shipit.remote(`chmod +x ${shipit.releasePath};`);
+    // shipit.log(chalk.green('Permissions changed'))
+    shipit.log(require('chalk').green('Permissions changed'));
+  })
+
   shipit.task('forever:restart', function () {
 
     shipit.log(require('chalk').green('Restarting server...'));
